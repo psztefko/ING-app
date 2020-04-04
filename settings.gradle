@@ -1,0 +1,2 @@
+rootProject.name='ING-app'
+include ':app'
