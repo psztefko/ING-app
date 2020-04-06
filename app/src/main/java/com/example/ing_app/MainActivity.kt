@@ -40,25 +40,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val userApi = retrofit.create(UsersApiService::class.java)
-
-        userApi.fetchAllUsers().enqueue(object : Callback<List<User>>{
-            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-
-            }
-
-            override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
-
     }
-    private fun showUserData(users: List<User>){
-        recyclerView.apply{
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = UsersAdapter(users)
-        }
-    }
+
 
     private fun showPostData(posts: List<Post>){
         recyclerView.apply{
