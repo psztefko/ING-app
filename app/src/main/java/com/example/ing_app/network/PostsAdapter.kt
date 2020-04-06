@@ -19,16 +19,15 @@ class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts[position]
-        //parsing id to string
         holder.userId.text = post.userId.toString()
-        holder.postId = post.postId
-/*        holder.title = post.title
-        holder.body = post.body*/
+        holder.postId.text = post.postId.toString()
+        holder.title.text = post.title
+        holder.body.text = post.body
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val userId: TextView = itemView.userId
-        var postId: Int = itemView.postId
+        var postId: TextView = itemView.postId
         var title: TextView = itemView.title
         var body: TextView = itemView.body
     }

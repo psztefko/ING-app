@@ -33,7 +33,7 @@
         tools:text="title"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id" />
+        app:layout_constraintTop_toBottomOf="@+id/postId" />
 
     <TextView
         android:id="@+id/body"

@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.util.Log.d
 import android.widget.ListView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ing_app.network.ApiService
-import com.example.ing_app.network.Post
-import com.example.ing_app.network.PostsAdapter
+import com.example.ing_app.network.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,11 +28,11 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
-        val api = retrofit.create(ApiService::class.java)
+        val postApi = retrofit.create(PostsApiService::class.java)
 
-        api.fetchAllPosts().enqueue(object : Callback<List<Post>>{
+        postApi.fetchAllPosts().enqueue(object : Callback<List<Post>>{
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                showData(response.body()!!)
+                showPostData(response.body()!!)
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
@@ -42,8 +40,27 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        val userApi = retrofit.create(UsersApiService::class.java)
+
+        userApi.fetchAllUsers().enqueue(object : Callback<List<User>>{
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
     }
-    private fun showData(posts: List<Post>){
+    private fun showUserData(users: List<User>){
+        recyclerView.apply{
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = UsersAdapter(users)
+        }
+    }
+
+    private fun showPostData(posts: List<Post>){
         recyclerView.apply{
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = PostsAdapter(posts)
