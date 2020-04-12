@@ -23,31 +23,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-
-        val postApi = retrofit.create(PostsApiService::class.java)
-
-        postApi.fetchAllPosts().enqueue(object : Callback<List<Post>>{
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                showPostData(response.body()!!)
-            }
-
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                d("tag", "onFailure")
-            }
-        })
-
-    }
-
-
-    private fun showPostData(posts: List<Post>){
-        recyclerView.apply{
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = PostsAdapter(posts)
-        }
     }
 }
