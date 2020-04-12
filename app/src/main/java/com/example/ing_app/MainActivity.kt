@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log.d
 import android.widget.ListView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ing_app.domain.Post
 import com.example.ing_app.network.*
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call

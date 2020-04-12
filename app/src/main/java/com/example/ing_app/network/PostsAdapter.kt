@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.R
+import com.example.ing_app.domain.Post
 import kotlinx.android.synthetic.main.post_row.view.*
 
 class PostsAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
