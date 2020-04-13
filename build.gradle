@@ -6,7 +6,7 @@ buildscript {
         //coin_version = '2.1.4'
         core_version = '1.2.0'
         //nav_version = '2.2.1'
-        //lifecycle_version = '2.2.1'
+        lifecycle_version = '2.2.1'
         coroutines_kotlin_version = '1.3.4'
         retrofit_version = '2.7.2'
         //moshi_version = '1.9.2'

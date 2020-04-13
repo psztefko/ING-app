@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ING-app</string>
+    <string name="user_name">username</string>
+    <string name="title">title</string>
+    <string name="body">body</string>
+    <string name="comments">comments</string>
 </resources>

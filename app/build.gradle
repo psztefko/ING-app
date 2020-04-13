@@ -55,8 +55,8 @@ dependencies {
     // implementation "androidx.navigation:navigation-ui-ktx:$nav_verison"
 
     // Lifecycle
-    // implementation "androidx.navigation:navigation-fragment-ktx:$lifecycle_version"
-    // implementation "androidx.navigation:navigation-ui-ktx:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$lifecycle_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$lifecycle_version"
 
     // Couroutines for getting off the UI thread
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_kotlin_version"
