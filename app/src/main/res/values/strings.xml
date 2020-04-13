@@ -4,4 +4,11 @@
     <string name="title">title</string>
     <string name="body">body</string>
     <string name="comments">comments</string>
+    <string name="email">email</string>
+    <string name="website">website</string>
+    <string name="street">street</string>
+    <string name="city">city</string>
+    <string name="zip_code">zip_code</string>
+    <string name="geolocation">geolocation</string>
+    <string name="images">images</string>
 </resources>

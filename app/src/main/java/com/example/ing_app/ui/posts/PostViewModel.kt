@@ -1,4 +1,4 @@
-package com.example.ing_app.posts
+package com.example.ing_app.ui.posts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
