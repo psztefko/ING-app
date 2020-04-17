@@ -1,4 +1,4 @@
-package com.example.ing_app.ui.posts
+package com.example.ing_app.ui.user.posts
 
 import android.os.Bundle
 import android.view.LayoutInflater

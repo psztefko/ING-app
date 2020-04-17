@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_post"
-        android:name="com.example.ing_app.ui.posts.PostFragment"
+        android:name="com.example.ing_app.ui.user.posts.PostFragment"
         android:label="fragment_post"
         tools:layout="@layout/fragment_post">
         <action
