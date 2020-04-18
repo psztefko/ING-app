@@ -3,13 +3,13 @@
 buildscript {
     ext {
         kotlin_version = '1.3.71'
-        //coin_version = '2.1.4'
+        koin_version = '2.1.4'
         core_version = '1.2.0'
-        //nav_version = '2.2.1'
+        nav_version = '2.2.1'
         lifecycle_version = '2.2.1'
         coroutines_kotlin_version = '1.3.4'
         retrofit_version = '2.7.2'
-        //moshi_version = '1.9.2'
+        moshi_version = '1.9.2'
         timber_version = '4.7.1'
         //glide_version = '4.11.0'
         //room_version = '2.2.5'
@@ -33,6 +33,18 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.koin:koin-gradle-plugin:$koin_version"
+    }
+}
+
+apply plugin: 'koin'
+
 
 allprojects {
     repositories {

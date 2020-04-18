@@ -1,17 +1,18 @@
-package com.example.ing_app.ui.user.posts
+package com.example.ing_app.ui.posts
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ing_app.databinding.FragmentPostBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PostFragment : Fragment() {
-    private val viewModel: PostViewModel by lazy {
-        ViewModelProvider(this).get(PostViewModel::class.java)
-    }
+    private val viewModel: PostViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
