@@ -1,13 +1,14 @@
-package com.example.ing_app.network.Post
+package com.example.ing_app.network.Comment
 
 import android.content.Context
+import com.example.ing_app.network.Post.PostService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class PostApi (private val context: Context){
+class CommentApi (private val context: Context){
     private val BASE_URL = "http://jsonplaceholder.typicode.com"
 
     // Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
@@ -24,7 +25,7 @@ class PostApi (private val context: Context){
         .baseUrl(BASE_URL)
         .build()
 
-    fun getApiService(): PostService {
-        return retrofit.create(PostService::class.java)
+    fun getApiService(): CommentService {
+        return retrofit.create(CommentService::class.java)
     }
 }

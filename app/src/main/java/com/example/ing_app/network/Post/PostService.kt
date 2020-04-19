@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface PostService {
     @GET("/posts")
-    fun getAllPosts(): Deferred<List<Post>>
+    fun getPosts(): Deferred<List<Post>>
     @GET("/posts/{postId}")
     fun getPost(@Path("postId") postId: Int): Deferred<Post>
 }

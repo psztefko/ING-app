@@ -9,8 +9,7 @@ class UserRepository (private val userService: UserService){
     suspend fun getUsers(){
         withContext(Dispatchers.IO){
             val request = userService.getUsers()
-            val response = request
-            Timber.d("onUsersRecieved ${response}")
+            Timber.d("onUsersRecieved $request")
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.ing_app.network
+package com.example.ing_app.network.Comment
 
 import com.example.ing_app.domain.Comment
 import kotlinx.coroutines.Deferred

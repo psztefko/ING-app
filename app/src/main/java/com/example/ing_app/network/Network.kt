@@ -1,5 +1,6 @@
 package com.example.ing_app.network
 
+import com.example.ing_app.network.Comment.CommentService
 import com.example.ing_app.network.Post.PostService
 import com.example.ing_app.network.User.UserService
 import com.squareup.moshi.Moshi
@@ -29,7 +30,8 @@ private val retrofit = Retrofit.Builder()
 object Network {
     val posts: PostService by lazy { retrofit.create(
         PostService::class.java) }
-    val comments: CommentService by lazy { retrofit.create(CommentService::class.java) }
+    val comments: CommentService by lazy { retrofit.create(
+        CommentService::class.java) }
     val photos: PhotoService by lazy { retrofit.create(PhotoService::class.java) }
     val albums: AlbumService by lazy { retrofit.create(AlbumService::class.java) }
     val users: UserService by lazy { retrofit.create(

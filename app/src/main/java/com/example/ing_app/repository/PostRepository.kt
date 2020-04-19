@@ -5,12 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class PostRepository(private val postService: PostService) {
+class PostRepository (private val postService: PostService) {
     suspend fun getAllPosts() {
         withContext(Dispatchers.IO) {
-            val request = postService.getAllPosts()
-            val response = request
-            Timber.d("onPostsReceived ${response}")
+            val request = postService.getPosts()
+            Timber.d("onPostsReceived $request")
         }
     }
 }
