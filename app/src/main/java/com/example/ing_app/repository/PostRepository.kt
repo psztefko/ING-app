@@ -1,8 +1,6 @@
 package com.example.ing_app.repository
 
-import com.example.ing_app.network.Network
-import com.example.ing_app.network.PostApi
-import com.example.ing_app.network.PostService
+import com.example.ing_app.network.Post.PostService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

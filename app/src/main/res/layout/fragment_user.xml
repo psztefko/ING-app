@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.example.ing_app.ui.user.UserViewModel" />
+        <variable
             name="user"
             type="com.example.ing_app.domain.User" />
         <variable

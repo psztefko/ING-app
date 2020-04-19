@@ -1,5 +1,5 @@
 
-package com.example.ing_app.network
+package com.example.ing_app.network.Post
 
 import com.example.ing_app.domain.Post
 import kotlinx.coroutines.Deferred

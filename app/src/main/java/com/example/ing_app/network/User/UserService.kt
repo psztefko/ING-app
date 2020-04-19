@@ -1,4 +1,4 @@
-package com.example.ing_app.network
+package com.example.ing_app.network.User
 
 import com.example.ing_app.domain.User
 import kotlinx.coroutines.Deferred
