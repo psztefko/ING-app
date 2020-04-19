@@ -1,4 +1,4 @@
-package com.example.ing_app.network
+package com.example.ing_app.network.Image
 
 import com.example.ing_app.domain.Photo
 import kotlinx.coroutines.Deferred

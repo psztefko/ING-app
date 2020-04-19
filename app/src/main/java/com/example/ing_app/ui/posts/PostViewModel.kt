@@ -12,7 +12,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun getPosts() {
         viewModelScope.launch {
-            val apiResult = postRepository.getAllPosts()
+            val apiResult = postRepository.getPosts()
         }
     }
 }
