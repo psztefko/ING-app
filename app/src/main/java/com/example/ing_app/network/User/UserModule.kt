@@ -19,6 +19,6 @@ object UserModule {
     }
 
     private fun provideApiService(api: UserApi): UserService {
-        return api.getUserService()
+        return api.getApiService()
     }
 }

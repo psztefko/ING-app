@@ -25,7 +25,7 @@ class UserApi(private val context: Context){
         .baseUrl(BASE_URL)
         .build()
 
-    fun getUserService(): UserService {
+    fun getApiService(): UserService {
         return retrofit.create(UserService::class.java)
     }
 
