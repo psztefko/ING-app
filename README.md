@@ -62,11 +62,12 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Basic Databinding
 - [x] Basic Structure of project
 - [x] RecyclerView Adapter
-- [] Showing post in RecyclerView <-- temporary downgrade
-- [] Pagination for post
-- [] Showing user info
-- [] Showing Comments from user post
-- [] Showing Photos
+- [ ] Showing post in RecyclerView <-- temporary downgrade
+- [ ] Pagination for post
+- [ ] Showing user info
+- [ ] Showing Comments from user post
+- [ ] Showing Photos
+- [ ] Navigation Intent
 
 ## 6 Stages of Fixing code
 - [x] Denial and Isolation
