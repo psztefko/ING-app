@@ -49,11 +49,11 @@ To build and install that project you need gradle. We are using android studio t
 ```sh
 git clone https://github.com/psztefko/ING-app.git
 ```
-3. Build project with gradle
+2. Build project with gradle
 ```sh
 ./gradlew build
 ```
-4. Install apk on your phone or run it with avd
+3. Install apk on your phone or run it with avd
 
 <!-- ROADMAP -->
 ## Roadmap
