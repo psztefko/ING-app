@@ -51,27 +51,29 @@ dependencies {
     implementation "androidx.core:core-ktx:$core_version"
 
     // Navigation
-    // implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    // implementation "androidx.navigation:navigation-ui-ktx:$nav_verison"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Lifecycle
-    // implementation "androidx.navigation:navigation-fragment-ktx:$lifecycle_version"
-    // implementation "androidx.navigation:navigation-ui-ktx:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$lifecycle_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$lifecycle_version"
 
     // Couroutines for getting off the UI thread
-    // implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_kotlin_version"
-    // implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_kotlin_version"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
     // Retrofit for networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
     // Moshi for parsing the JSON format
-    // implementation "com.squareup.moshi:moshi:$moshi_version"
-    // implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // Logging
-    // implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Glide for images
     // implementation "com.github.bumptech.glide:glide:$glide_version"
@@ -86,8 +88,21 @@ dependencies {
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$recyclerView_version"
 
+    // Koin
+    implementation "org.koin:koin-androidx-viewmodel:2.1.4"
+    implementation  'org.koin:koin-android:2.1.4'
+
     // Test libs
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    // Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
 }
