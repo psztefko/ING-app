@@ -82,7 +82,7 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Fixed Bug
 
 ## Questions
-
+1
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
