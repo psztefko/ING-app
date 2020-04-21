@@ -20,9 +20,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 Main goal of our app is to download, parse and display data from [JSONPlaceholderAPI](http://jsonplaceholder.typicode.com/).
+
 This task may look simple, but we have already discovered that it isn’t.
+
 Through making this app we want to learn programming in Kotlin language starting from basic parts like learning the syntax to more complicated stuff like following the optimal architecture rules like MVVM.
+
 Since our last meeting we sadly had to downgrade our functionality with the aim of improving the architecture and readability of our code. We hope that this change will save us a lot of time in future.
+
 
 <img src="./Screenshots/Screenshot@8a4f3e2" alt="Screenshot of application" width=200>
 
