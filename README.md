@@ -87,7 +87,10 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Fixed Bug
 
 ## Questions
-
+1. Is it worth to change Deferred type to Suspend function in Service [Retrofit +2.6.0].
+2. Should we make models to show in ViewModel or just make fields with certain values
+3. Is it possible to make pagination in adapter RecyclerView to scroll through app fluently
+4. How to transfer domain object to a model effectively e.g PostService + UserService + CommentService -> PostModel
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
