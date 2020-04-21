@@ -19,11 +19,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-8a4f3e22c3ac8ba9e02c1c7bb3d98cf36c002a52
-![Screenshot](/Screenshots/Screenshot@8a4f3e2)
 There are many usefull android apps that really suit everyone needs, we are begginers at android so, we know that it's really hard to make good app. This is simple app that parses [JSONPlaceholderAPI](http://jsonplaceholder.typicode.com/). Creating apps according to every style guide and design patterns for android is pretty hard especially when we didn't have experience with mobile apps but we are giving our best to create good easy to extend app.
 
 We just took approach that prioritize good architecture to spend less time when we implement stuff. It will save us a lot of time late.
+
+<img src="./Screenshots/Screenshot@8a4f3e2" alt="Screenshot of application" width=200>
+
+psztefko/ING-app@8a4f3e22c3ac8ba9e02c1c7bb3d98cf36c002a52
+
 
 ### Built With
 This section provide information about frameworks and technologies that our project is currently using

@@ -17,5 +17,4 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
             val apiResult = postRepository.getPosts()
         }
     }
-    fun get
 }
