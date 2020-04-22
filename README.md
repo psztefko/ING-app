@@ -43,7 +43,7 @@ This section provide information about frameworks and technologies that our proj
 
 <!-- GETTING STARTED -->
 ## Getting Started
-This is instructions how to set our project locally.
+Here you can find how to locally set our project.
 
 ### Prerequisites
 To build and install that project you need gradle. We are using android studio to compile everything
