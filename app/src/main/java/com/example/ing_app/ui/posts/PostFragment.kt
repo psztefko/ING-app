@@ -26,7 +26,7 @@ class PostFragment : Fragment() {
         val adapter = PostAdapter()
         binding.postsList.adapter = adapter
 
-        viewModel.posts.observe(this, Observer {
+        viewModel.posts.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }

@@ -20,6 +20,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun getPosts() {
         viewModelScope.launch {
+            Timber.d("getPosts")
             val apiResult = postRepository.getPosts()
             updatePosts(apiResult)
         }
@@ -27,6 +28,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun updatePosts(result: Result<List<Post>>) {
         if (isResultSuccess(result.resultType)) {
+            Timber.d("updatePosts")
             posts.postValue(result.data)
         }
     }

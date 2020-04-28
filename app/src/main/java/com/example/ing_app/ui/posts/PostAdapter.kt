@@ -15,6 +15,7 @@ class PostAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Timber.d("onBindViewHolder")
         val item = getItem(position)
+        Timber.d("onBindViewHolderItem: ${item}")
         holder.bind(item)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

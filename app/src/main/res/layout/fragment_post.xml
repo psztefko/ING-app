@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:content="com.example.ing_app.MainActivity">
+        tools:content="com.example.ing_app.ui.posts.PostFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/posts_list"
