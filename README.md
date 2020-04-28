@@ -23,10 +23,7 @@ There are many usefull android apps that really suit everyone needs, we are begg
 
 We just took approach that prioritize good architecture to spend less time when we implement stuff. It will save us a lot of time late.
 
-<img src="./Screenshots/Screenshot@8a4f3e2" alt="Screenshot of application" width=200>
-
-psztefko/ING-app@8a4f3e22c3ac8ba9e02c1c7bb3d98cf36c002a52
-
+<img src="./Screenshots/Screenshot" alt="Screenshot of application" width=200>
 
 ### Built With
 This section provide information about frameworks and technologies that our project is currently using
@@ -66,7 +63,7 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Basic Databinding
 - [x] Basic Structure of project
 - [x] RecyclerView Adapter
-- [ ] Showing post in RecyclerView <-- temporary downgrade
+- [x] Showing post in RecyclerView
 - [ ] Pagination for post
 - [ ] Showing user info
 - [ ] Showing Comments from user post
