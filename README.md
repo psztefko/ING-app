@@ -19,9 +19,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-There are many usefull android apps that really suit everyone needs, we are begginers at android so, we know that it's really hard to make good app. This is simple app that parses [JSONPlaceholderAPI](http://jsonplaceholder.typicode.com/). Creating apps according to every style guide and design patterns for android is pretty hard especially when we didn't have experience with mobile apps but we are giving our best to create good easy to extend app.
+Main goal of our app is to download, parse and display data from [JSONPlaceholderAPI](http://jsonplaceholder.typicode.com/).
 
-We just took approach that prioritize good architecture to spend less time when we implement stuff. It will save us a lot of time late.
+This task may look simple, but we have already discovered that it isn’t.
+
+Through making this app we want to learn programming in Kotlin language starting from basic parts like learning the syntax to more complicated stuff like following the optimal architecture rules like MVVM.
+
+Since our last meeting we sadly had to downgrade our functionality with the aim of improving the architecture and readability of our code. We hope that this change will save us a lot of time in future.
+
 
 <img src="./Screenshots/Screenshot" alt="Screenshot of application" width=200>
 
@@ -35,7 +40,7 @@ This section provide information about frameworks and technologies that our proj
 
 <!-- GETTING STARTED -->
 ## Getting Started
-This is instructions how to set our project locally.
+Here you can find how to locally set our project.
 
 ### Prerequisites
 To build and install that project you need gradle. We are using android studio to compile everything
@@ -79,7 +84,10 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Fixed Bug
 
 ## Questions
-
+1. Is it worth to change Deferred type to Suspend function in Service [Retrofit +2.6.0].
+2. Should we make models to show in ViewModel or just make fields with certain values
+3. Is it possible to make pagination in adapter RecyclerView to scroll through app fluently
+4. How to transfer domain object to a model effectively e.g PostService + UserService + CommentService -> PostModel
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
