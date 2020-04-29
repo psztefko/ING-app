@@ -7,7 +7,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class PostApi (private val context: Context){
+class PostApi(private val context: Context){
     private val BASE_URL = "https://jsonplaceholder.typicode.com"
 
     // Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
