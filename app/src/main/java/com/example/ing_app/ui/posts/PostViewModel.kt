@@ -30,10 +30,15 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
         var uiPostList: MutableList<UiPost> = mutableListOf()
         viewModelScope.launch {
-            // Not the best way
+            // Better way but still can do better
+            var temporaryUserId = domainPost.data!!.get(0).userId
+            var userResult = postRepository.getUserFromPost(temporaryUserId)
             for(post in domainPost.data!!) {
-                val userResult = postRepository.getUserFromPost(post.userId)
                 val commentResult = postRepository.getCommentsFromPost(post.id)
+                if (post.userId != temporaryUserId) {
+                    temporaryUserId = post.userId
+                    userResult = postRepository.getUserFromPost(temporaryUserId)
+                }
                 if(isResultSuccess(userResult.resultType) && isResultSuccess(commentResult.resultType)) {
                     val postData = UiPost(
                         id = post.id,
@@ -45,8 +50,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                     Timber.d("Postdata = ${postData}")
                     uiPostList.add(postData)
                 }
+                updatePosts(uiPostList.toList())
             }
-            updatePosts(uiPostList.toList())
         }
     }
 
