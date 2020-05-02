@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
-import com.example.ing_app.domain.Post
+import com.example.ing_app.ui.posts.Post
 import timber.log.Timber
 
 

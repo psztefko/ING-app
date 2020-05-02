@@ -7,7 +7,7 @@
     <data>
         <variable
             name="post"
-            type="com.example.ing_app.domain.Post" />
+            type="com.example.ing_app.ui.posts.Post" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,27 +15,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--<TextView
-            android:id="@+id/userId"
+        <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@{post.userId}"
+            android:text="@{post.userName}"
             tools:text="userId"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/postId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@{post.id}"
-            tools:text="id"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userId" />-->
 
         <TextView
             android:id="@+id/title"
@@ -46,8 +35,7 @@
             tools:text="title"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-            <!--app:layout_constraintTop_toBottomOf="@+id/postId"-->
+            app:layout_constraintTop_toBottomOf="@+id/username"/>
 
         <TextView
             android:id="@+id/body"
@@ -57,5 +45,14 @@
             tools:text="body"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/commentAmmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Integer.toString(post.commentsAmount)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/body" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,7 @@ package com.example.ing_app.repository
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.exception.CancelledFetchDataException
 import com.example.ing_app.common.exception.NetworkException
-import com.example.ing_app.domain.Post
+import com.example.ing_app.domain.*
 import com.example.ing_app.network.Comment.CommentService
 import com.example.ing_app.network.Post.PostService
 import com.example.ing_app.network.User.UserService
@@ -14,6 +14,7 @@ import timber.log.Timber
 class PostRepository (private val postService: PostService,
                       private val userService: UserService,
                       private val commentService: CommentService) {
+
     suspend fun getPosts() : Result<List<Post>> {
         var result: Result<List<Post>> = Result.success(emptyList())
 
@@ -38,16 +39,48 @@ class PostRepository (private val postService: PostService,
         }
         return result
     }
-    suspend fun getUserFromPost(postId:Int) {
+    suspend fun getUserFromPost(postId:Int): Result<User> {
+        var result: Result<User> = Result.success(User())
         withContext(Dispatchers.IO) {
-            val request = userService.getUser(postId)
-            Timber.d("onUserFromPostReceived $request")
+            try {
+                val request = userService.getUser(postId)
+                val response = request.await()
+                Timber.d("onUserReceived {$request}")
+
+                request.let {
+                    if (it.isCompleted) {
+                        result = Result.success(response)
+                    } else if (it.isCancelled) {
+                        result = Result.failure(CancelledFetchDataException())
+                    }
+                }
+            } catch (ex: Throwable) {
+                result = Result.failure(NetworkException())
+                Timber.d("onUserReceived NetworkException")
+            }
         }
+        return result
     }
-    suspend fun getCommentsFromPost(postId:Int) {
+    suspend fun getCommentsFromPost(postId:Int): Result<List<Comment>> {
+        var result: Result<List<Comment>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
-            val request = commentService.getCommentsFromPost(postId)
-            Timber.d("onCommentsFromPostReceived $request")
+            try{
+                val request = commentService.getCommentsFromPost(postId)
+                val response = request.await()
+                Timber.d("onCommentsFromPostReceived $request")
+
+                request.let {
+                    if (it.isCompleted) {
+                        result = Result.success(response)
+                    } else if (it.isCancelled) {
+                        result = Result.failure(CancelledFetchDataException())
+                    }
+                }
+            } catch (ex: Throwable) {
+                result = Result.failure(NetworkException())
+                Timber.d("onCommentReceived NetworkException")
+            }
         }
+        return result
     }
 }
