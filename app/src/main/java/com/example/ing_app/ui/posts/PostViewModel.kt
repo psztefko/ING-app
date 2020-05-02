@@ -28,12 +28,12 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
-        var uiPostList: MutableList<UiPost> = mutableListOf()
+        val uiPostList: MutableList<UiPost> = mutableListOf()
         viewModelScope.launch {
             // Better way but still can do better
             var temporaryUserId = domainPost.data!!.get(0).userId
             var userResult = postRepository.getUserFromPost(temporaryUserId)
-            for(post in domainPost.data!!) {
+            for(post in domainPost.data) {
                 val commentResult = postRepository.getCommentsFromPost(post.id)
                 if (post.userId != temporaryUserId) {
                     temporaryUserId = post.userId
