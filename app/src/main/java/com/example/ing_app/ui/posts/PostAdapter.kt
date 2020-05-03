@@ -1,37 +1,39 @@
 package com.example.ing_app.ui.posts
 
-import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
-import com.example.ing_app.ui.posts.Post
-import timber.log.Timber
 
 
-class PostAdapter :
+class PostAdapter(private val clickListener: PostListener) :
     ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()) {
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Timber.d("onBindViewHolder")
         val item = getItem(position)
-        Timber.d("onBindViewHolderItem: ${item}")
-        holder.bind(item)
+
+        holder.bind(clickListener, item)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Timber.d("onCreateViewHolder")
         return ViewHolder.from(parent)
     }
     class ViewHolder private constructor(val binding: PostRowBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Post) {
+
+        fun bind(clickListener: PostListener, item: Post) {
             binding.post = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
+
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = PostRowBinding.inflate(layoutInflater, parent , false)
+
                 return ViewHolder(binding)
             }
         }
@@ -44,4 +46,8 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem == newItem
     }
+}
+
+class PostListener(val clickListener: (userId: Int) -> Unit) {
+    fun onClick(post: Post) = clickListener(post.userId)
 }

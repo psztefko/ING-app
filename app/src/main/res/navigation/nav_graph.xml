@@ -12,11 +12,11 @@
         android:label="fragment_post"
         tools:layout="@layout/fragment_post">
         <action
-            android:id="@+id/posts_to_comments"
-            app:destination="@id/fragment_comment"/>
-        <action
             android:id="@+id/posts_to_username"
             app:destination="@id/fragment_user"/>
+        <action
+            android:id="@+id/posts_to_comments"
+            app:destination="@id/fragment_comment" />
     </fragment>
 
     <fragment

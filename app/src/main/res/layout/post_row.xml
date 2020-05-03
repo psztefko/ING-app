@@ -8,6 +8,10 @@
         <variable
             name="post"
             type="com.example.ing_app.ui.posts.Post" />
+
+        <variable
+            name="clickListener"
+            type="com.example.ing_app.ui.posts.PostListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +25,7 @@
             android:layout_height="wrap_content"
             android:padding="6dp"
             android:text="@{post.userName}"
+            android:onClick="@{() -> clickListener.onClick(post)}"
             tools:text="username"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
