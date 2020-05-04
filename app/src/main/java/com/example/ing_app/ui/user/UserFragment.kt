@@ -11,7 +11,6 @@ import org.koin.core.parameter.parametersOf
 
 class UserFragment : Fragment() {
     val args = UserFragmentArgs.fromBundle(requireArguments())
-
     private val viewModel: UserViewModel by sharedViewModel{ parametersOf(args) }
 
     override fun onCreateView(
