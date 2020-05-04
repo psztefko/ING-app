@@ -10,15 +10,6 @@
         <variable
             name="user"
             type="com.example.ing_app.domain.User" />
-        <variable
-            name="adress"
-            type="com.example.ing_app.domain.Address" />
-        <variable
-            name="photo"
-            type="com.example.ing_app.domain.Photo" />
-        <variable
-            name="geo"
-            type="com.example.ing_app.domain.Geo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,7 +63,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.street}"
+            android:text="@{user.address.street}"
             tools:text="street"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +76,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.city}"
+            android:text="@{user.address.city}"
             tools:text="city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +89,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.zipcode}"
+            android:text="@{user.address.zipcode}"
             tools:text="zipcode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +102,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{geo.lat}"
+            android:text="@{user.address.geo.lat}"
             tools:text="geoLat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +115,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{geo.lng}"
+            android:text="@{user.address.geo.lng}"
             tools:text="geoLng"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +128,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{photo.title}"
+            android:text="Temp"
             tools:text="images"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -24,8 +24,11 @@ class PostFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        val adapter = PostAdapter(PostListener {
+        val adapter = PostAdapter( UserClickListener {
             userId -> viewModel.onPostUserClicked(userId)
+        },
+        CommentClickListener {
+            id -> viewModel.onPostCommentClicked(id)
         })
         binding.postsList.adapter = adapter
 
@@ -35,19 +38,19 @@ class PostFragment : Fragment() {
             }
         })
 
-        viewModel.navigateToSelectedUser.observe(viewLifecycleOwner, Observer {id ->
-            id?.let {
-                this.findNavController().navigate(PostFragmentDirections.postsToUsername(id))
+        viewModel.navigateToSelectedUser.observe(viewLifecycleOwner, Observer {userId ->
+            userId?.let {
+                this.findNavController().navigate(PostFragmentDirections.postsToUsername(userId))
                 viewModel.displayUserComplete()
             }
         })
 
-        /*viewModel.navigateToSelectedComments.observe(viewLifecycleOwner, Observer {
-            if (null != it) {
-                //this.findNavController().navigate(PostFragmentDirections.postsToComments(it.id))
+        viewModel.navigateToSelectedComments.observe(viewLifecycleOwner, Observer {id ->
+            id?.let {
+                this.findNavController().navigate(PostFragmentDirections.postsToComments(id))
                 viewModel.displayCommentsComplete()
             }
-        })*/
+        })
 
         return binding.root
     }

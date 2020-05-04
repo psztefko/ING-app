@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
 
-
-class PostAdapter(private val clickListener: PostListener) :
+// Two listeners (propably not the best idea but android docs are literally the worst)
+class PostAdapter(private val userClickListener: UserClickListener, private val commentClickListener: CommentClickListener) :
     ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-
-        holder.bind(clickListener, item)
+        holder.bind(userClickListener, commentClickListener, item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,9 +22,10 @@ class PostAdapter(private val clickListener: PostListener) :
     class ViewHolder private constructor(val binding: PostRowBinding):
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(clickListener: PostListener, item: Post) {
+        fun bind(userClickListener: UserClickListener, commentClickListener: CommentClickListener, item: Post) {
             binding.post = item
-            binding.clickListener = clickListener
+            binding.userClickListener = userClickListener
+            binding.commentClickListener = commentClickListener
             binding.executePendingBindings()
         }
 
@@ -48,6 +48,10 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     }
 }
 
-class PostListener(val clickListener: (userId: Int) -> Unit) {
-    fun onClick(post: Post) = clickListener(post.userId)
+class UserClickListener(val ClickListener: (userId: Int) -> Unit) {
+    fun onUserClick(post: Post) = ClickListener(post.userId)
+}
+
+class CommentClickListener(val ClickListener: (id: Int) -> Unit) {
+    fun onCommentClick(post: Post) = ClickListener(post.id)
 }

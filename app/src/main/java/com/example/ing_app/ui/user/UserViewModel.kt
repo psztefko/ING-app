@@ -15,10 +15,15 @@ class UserViewModel (private val userKey: Int = 0,
     val user: LiveData<User>
         get() = _user
 
+    init {
+        getUser()
+    }
+
     private fun getUser() {
         viewModelScope.launch {
             Timber.d("getUser")
             val apiResult = userRepository.getUserFromPost(userKey)
+            Timber.d(apiResult.data!!.name)
         }
     }
 }

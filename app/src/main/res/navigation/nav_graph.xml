@@ -42,6 +42,11 @@
         android:name="com.example.ing_app.ui.comments.CommentFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1"
+            />
     </fragment>
 
     <fragment

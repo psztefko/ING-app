@@ -22,8 +22,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val navigateToSelectedUser: LiveData<Int>
         get() = _navigateToSelectedUser
 
-    private val _navigateToSelectedComments = MutableLiveData<UiPost>()
-    val navigateToSelectedComments: LiveData<UiPost>
+    private val _navigateToSelectedComments = MutableLiveData<Int>()
+    val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
 
     init {
@@ -77,6 +77,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun onPostUserClicked(id: Int) {
         _navigateToSelectedUser.value = id
+    }
+
+    fun onPostCommentClicked(id: Int) {
+        _navigateToSelectedComments.value = id
     }
 
     fun displayUserComplete() {

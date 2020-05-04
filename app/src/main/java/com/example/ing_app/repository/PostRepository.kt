@@ -11,9 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class PostRepository (private val postService: PostService,
-                      private val userService: UserService,
-                      private val commentService: CommentService) {
+class PostRepository (private val postService: PostService) {
 
     suspend fun getPosts() : Result<List<Post>> {
         var result: Result<List<Post>> = Result.success(emptyList())
@@ -43,7 +41,7 @@ class PostRepository (private val postService: PostService,
         var result: Result<User> = Result.success(User())
         withContext(Dispatchers.IO) {
             try {
-                val request = userService.getUser(postId)
+                val request = postService.getUser(postId)
                 val response = request.await()
                 Timber.d("onUserReceived {$request}")
 
@@ -65,7 +63,7 @@ class PostRepository (private val postService: PostService,
         var result: Result<List<Comment>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
             try{
-                val request = commentService.getCommentsFromPost(postId)
+                val request = postService.getCommentsFromPost(postId)
                 val response = request.await()
                 Timber.d("onCommentsFromPostReceived $request")
 
