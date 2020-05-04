@@ -1,19 +1,15 @@
 package com.example.ing_app.ui.posts
 
 import android.view.View
-import android.widget.ProgressBar
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ing_app.R
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.ResultType
 import com.example.ing_app.domain.Post as DomainPost
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
-import kotlinx.android.synthetic.main.fragment_post.view.*
 import kotlinx.coroutines.launch
-import org.koin.core.KoinApplication.Companion.init
 import timber.log.Timber
 
 
@@ -60,10 +56,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                 updatePosts(uiPostList.toList())
             }
         }
-        loadingVisibility.value = View.GONE
     }
 
     private fun updatePosts(result: List<UiPost>) {
+        loadingVisibility.value = View.GONE
         posts.postValue(result)
     }
 
@@ -71,11 +67,4 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         return resultType == ResultType.SUCCESS
     }
 
-    fun isLoading(loading: Boolean){
-        if(loading){
-
-        }else{
-
-        }
-    }
 }
