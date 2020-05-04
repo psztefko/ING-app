@@ -1,5 +1,6 @@
 package com.example.ing_app.ui.posts
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,7 @@ import timber.log.Timber
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val posts: MutableLiveData<List<UiPost>> = MutableLiveData()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getPosts()
@@ -29,11 +31,12 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
         val uiPostList: MutableList<UiPost> = mutableListOf()
+        loadingVisibility.value = View.VISIBLE
         viewModelScope.launch {
             // Better way but still can do better
             var temporaryUserId = domainPost.data!!.get(0).userId
             var userResult = postRepository.getUserFromPost(temporaryUserId)
-            for(post in domainPost.data) {
+            domainPost.data.forEach { post ->
                 val commentResult = postRepository.getCommentsFromPost(post.id)
                 if (post.userId != temporaryUserId) {
                     temporaryUserId = post.userId
@@ -56,10 +59,12 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     private fun updatePosts(result: List<UiPost>) {
+        loadingVisibility.value = View.GONE
         posts.postValue(result)
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {
         return resultType == ResultType.SUCCESS
     }
+
 }
