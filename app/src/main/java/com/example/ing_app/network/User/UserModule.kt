@@ -15,7 +15,7 @@ object UserModule {
             )
         }
         single { UserRepository(userService = get()) }
-        viewModel {UserViewModel(userRepository = get())}
+        viewModel {(id: Int) -> UserViewModel(id, userRepository = get())}
     }
 
     private fun provideApiService(api: UserApi): UserService {

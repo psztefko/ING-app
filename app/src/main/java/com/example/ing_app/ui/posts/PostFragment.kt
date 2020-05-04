@@ -35,9 +35,9 @@ class PostFragment : Fragment() {
             }
         })
 
-        viewModel.navigateToSelectedUser.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                this.findNavController().navigate(PostFragmentDirections.postsToUsername(it))
+        viewModel.navigateToSelectedUser.observe(viewLifecycleOwner, Observer {id ->
+            id?.let {
+                this.findNavController().navigate(PostFragmentDirections.postsToUsername(id))
                 viewModel.displayUserComplete()
             }
         })
