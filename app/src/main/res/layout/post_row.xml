@@ -64,7 +64,7 @@
             android:layout_marginBottom="10dp"
             android:padding="6dp"
             android:text="@{Integer.toString(post.commentsAmount)}"
-            android:onClick="@{() -> commentClickListener.onCommentClick(post)"
+            android:onClick="@{() -> commentClickListener.onCommentClick(post)}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
