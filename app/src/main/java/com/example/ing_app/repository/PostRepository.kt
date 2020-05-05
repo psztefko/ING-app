@@ -1,5 +1,7 @@
 package com.example.ing_app.repository
 
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.exception.CancelledFetchDataException
 import com.example.ing_app.common.exception.NetworkException
@@ -12,6 +14,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class PostRepository (private val postService: PostService) {
+
 
     suspend fun getPosts() : Result<List<Post>> {
         var result: Result<List<Post>> = Result.success(emptyList())

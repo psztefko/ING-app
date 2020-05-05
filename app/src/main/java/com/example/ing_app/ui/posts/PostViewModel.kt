@@ -1,6 +1,7 @@
 package com.example.ing_app.ui.posts
 
 import androidx.lifecycle.LiveData
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,7 @@ import timber.log.Timber
 
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
+  
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
         get() = _posts
@@ -25,6 +27,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private val _navigateToSelectedComments = MutableLiveData<Int>()
     val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
+  
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getPosts()
@@ -40,11 +44,12 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
         val uiPostList: MutableList<UiPost> = mutableListOf()
+        loadingVisibility.value = View.VISIBLE
         viewModelScope.launch {
             // Better way but still can do better
             var temporaryUserId = domainPost.data!![0].userId
             var userResult = postRepository.getUserFromPost(temporaryUserId)
-            for(post in domainPost.data) {
+            domainPost.data.forEach { post ->
                 val commentResult = postRepository.getCommentsFromPost(post.id)
                 if (post.userId != temporaryUserId) {
                     temporaryUserId = post.userId
@@ -68,6 +73,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     private fun updatePosts(result: List<UiPost>) {
+        loadingVisibility.value = View.GONE
         _posts.postValue(result)
     }
 
