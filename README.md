@@ -28,7 +28,7 @@ Through making this app we want to learn programming in Kotlin language starting
 Since our last meeting we sadly had to downgrade our functionality with the aim of improving the architecture and readability of our code. We hope that this change will save us a lot of time in future.
 
 
-<img src="./Screenshots/Screenshot" alt="Screenshot of application" width=200>
+<img src="./Screenshots/app.gif" alt="Screenshot of application" width=200>
 
 ### Built With
 This section provide information about frameworks and technologies that our project is currently using
