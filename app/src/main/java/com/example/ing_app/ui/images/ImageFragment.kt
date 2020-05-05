@@ -22,6 +22,10 @@ class ImageFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        /*val adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener { photo ->
+
+        })*/
+
         return binding.root
     }
 }
