@@ -7,18 +7,6 @@
         <variable
             name="viewModel"
             type="com.example.ing_app.ui.user.UserViewModel" />
-        <variable
-            name="user"
-            type="com.example.ing_app.domain.User" />
-        <variable
-            name="adress"
-            type="com.example.ing_app.domain.Address" />
-        <variable
-            name="photo"
-            type="com.example.ing_app.domain.Photo" />
-        <variable
-            name="geo"
-            type="com.example.ing_app.domain.Geo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{user.username}"
+            android:text="@{viewModel.user.username}"
             tools:text="username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +34,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{user.email}"
+            android:text="@{viewModel.user.email}"
             tools:text="email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +47,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{user.website}"
+            android:text="@{viewModel.user.website}"
             tools:text="website"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +60,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.street}"
+            android:text="@{viewModel.user.address.street}"
             tools:text="street"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +73,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.city}"
+            android:text="@{viewModel.user.address.city}"
             tools:text="city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +86,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{adress.zipcode}"
+            android:text="@{viewModel.user.address.zipcode}"
             tools:text="zipcode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +99,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{geo.lat}"
+            android:text="@{viewModel.user.address.geo.lat}"
             tools:text="geoLat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +112,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{geo.lng}"
+            android:text="@{viewModel.user.address.geo.lng}"
             tools:text="geoLng"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,8 +125,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{photo.title}"
-            tools:text="images"
+            android:text="@string/Photos"
+            tools:text="@string/Photos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/geoLng" />

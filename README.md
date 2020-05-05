@@ -70,8 +70,8 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] RecyclerView Adapter
 - [x] Showing post in RecyclerView
 - [ ] Pagination for post
-- [ ] Showing user info
-- [ ] Showing Comments from user post
+- [x] Showing user info
+- [x] Showing Comments from user post
 - [ ] Showing Photos
 - [ ] Navigation Intent
 

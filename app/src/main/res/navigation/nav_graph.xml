@@ -12,11 +12,12 @@
         android:label="fragment_post"
         tools:layout="@layout/fragment_post">
         <action
-            android:id="@+id/posts_to_comments"
-            app:destination="@id/fragment_comment"/>
-        <action
             android:id="@+id/posts_to_username"
-            app:destination="@id/fragment_user"/>
+            app:destination="@id/fragment_user">
+        </action>
+        <action
+            android:id="@+id/posts_to_comments"
+            app:destination="@id/fragment_comment" />
     </fragment>
 
     <fragment
@@ -24,6 +25,11 @@
         android:name="com.example.ing_app.ui.user.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1"
+            />
         <action
             android:id="@+id/user_to_googlemaps" />
         <action
@@ -36,6 +42,11 @@
         android:name="com.example.ing_app.ui.comments.CommentFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1"
+            />
     </fragment>
 
     <fragment
