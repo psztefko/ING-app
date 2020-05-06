@@ -34,6 +34,10 @@ android {
         }
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
 
 dependencies {
@@ -76,7 +80,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Glide for images
-    // implementation "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
 
     // Room database for cache and offline experience
     // implementation "androidx.room:room-runtime:$room_version"
@@ -105,4 +109,6 @@ dependencies {
     implementation "org.koin:koin-androidx-fragment:$koin_version"
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

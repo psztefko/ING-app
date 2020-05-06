@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.ing_app.ui.user.UserViewModel" />
+        <variable
+            name="clickListener"
+            type="com.example.ing_app.ui.user.UserListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,44 +95,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city" />
 
-        <TextView
-            android:id="@+id/geoLat"
-            android:layout_width="0dp"
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{viewModel.user.address.geo.lat}"
-            tools:text="geoLat"
+            android:onClick="@{() -> clickListener.onPhotosClicked(viewModel.user.id)}"
+            android:text="@string/Photos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/zipcode" />
 
-        <TextView
-            android:id="@+id/geoLng"
+        <!--<view xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            android:name="com.google.android.gms.maps.MapView"
+            android:id="@+id/map"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{viewModel.user.address.geo.lng}"
-            tools:text="geoLng"
+            android:layout_marginBottom="16dp"
+            map:cameraZoom="13"
+            map:mapType="normal"
+            map:liteMode="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/geoLat" />
+            app:layout_constraintTop_toBottomOf="@+id/button"/>-->
 
-        <TextView
-            android:id="@+id/images"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/Photos"
-            tools:text="@string/Photos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/geoLng" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentCommentsBinding
 import com.example.ing_app.ui.user.UserFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -35,6 +36,14 @@ class CommentFragment : Fragment() {
         viewModel.comments.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        viewModel.navigateToPosts.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController().navigate(
+                    CommentFragmentDirections.commentsToPosts())
+                    viewModel.doneNavigating()
             }
         })
 

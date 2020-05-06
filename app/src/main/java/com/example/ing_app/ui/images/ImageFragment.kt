@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ing_app.databinding.FragmentImagesBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.parameter.parametersOf
+import kotlin.properties.Delegates
 
 class ImageFragment : Fragment() {
-    private val viewModel: ImageViewModel by sharedViewModel()
+    var args by Delegates.notNull<Int>()
+    private val viewModel: ImageViewModel by sharedViewModel{ parametersOf(args) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,10 +24,6 @@ class ImageFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
-
-        /*val adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener { photo ->
-
-        })*/
 
         return binding.root
     }
