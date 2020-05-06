@@ -1,7 +1,4 @@
 <resources>
     <string name="app_name">ING-app</string>
     <string name="Photos">Click here to move to your photos</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

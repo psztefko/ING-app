@@ -11,6 +11,7 @@ import com.example.ing_app.databinding.FragmentCommentsBinding
 import com.example.ing_app.ui.user.UserFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class CommentFragment : Fragment() {
@@ -27,6 +28,8 @@ class CommentFragment : Fragment() {
         binding.lifecycleOwner = this
 
         args = UserFragmentArgs.fromBundle(requireArguments()).id
+
+        Timber.d("On comment args given: ${args}")
 
         binding.viewModel = viewModel
 

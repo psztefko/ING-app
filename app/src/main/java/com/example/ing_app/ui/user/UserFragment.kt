@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentUserBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class UserFragment : Fragment() {
@@ -34,6 +35,8 @@ class UserFragment : Fragment() {
         binding.lifecycleOwner = this
 
         args = UserFragmentArgs.fromBundle(requireArguments()).id
+
+        Timber.d("On user args given: ${args}")
 
         binding.viewModel = viewModel
 
