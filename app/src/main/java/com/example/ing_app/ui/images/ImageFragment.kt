@@ -23,7 +23,15 @@ class ImageFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        args = ImageFragmentArgs.fromBundle(requireArguments()).userId
+
         binding.viewModel = viewModel
+
+        /*val adapter = PhotoGridAdapter( PhotoGridAdapter.OnClickListener {
+                photo -> viewModel.onImageFullImageClicked(photo.url)
+        })
+
+        binding.adapter = adapter*/
 
         return binding.root
     }

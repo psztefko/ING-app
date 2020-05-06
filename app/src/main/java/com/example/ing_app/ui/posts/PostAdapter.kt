@@ -56,7 +56,5 @@ class UserClickListener(val ClickListener: (userId: Int) -> Unit) {
 }
 
 class CommentClickListener(val ClickListener: (id: Int) -> Unit) {
-    fun onCommentClick(post: Post) {
-        ClickListener(post.id)
-    }
+    fun onCommentClick(post: Post) = ClickListener(post.id)
 }

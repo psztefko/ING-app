@@ -38,6 +38,10 @@ class UserFragment : Fragment() {
 
         Timber.d("On user args given: ${args}")
 
+        binding.userListener = UserListener {
+            it -> viewModel.onUserPhotosClicked(it)
+        }
+
         binding.viewModel = viewModel
 
         viewModel.navigateToSelectedPhotos.observe(viewLifecycleOwner, Observer {userId ->

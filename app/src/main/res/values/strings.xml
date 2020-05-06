@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ING-app</string>
-    <string name="Photos">Click here to move to your photos</string>
+    <string name="Photos">Gallery</string>
 </resources>
