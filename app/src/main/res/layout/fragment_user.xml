@@ -15,6 +15,16 @@
         tools:context=".UserFragment">
 
         <TextView
+            android:id="@+id/title_username"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -22,10 +32,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.username}"
-            tools:text="username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/title_username"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="username" />
 
         <TextView
             android:id="@+id/email"
@@ -35,10 +45,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.email}"
-            tools:text="email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintStart_toEndOf="@+id/title_email"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            tools:text="email" />
 
         <TextView
             android:id="@+id/website"
@@ -48,10 +58,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.website}"
-            tools:text="website"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintStart_toEndOf="@+id/title_website"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            tools:text="website" />
 
         <TextView
             android:id="@+id/street"
@@ -61,10 +71,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.street}"
-            tools:text="street"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/website" />
+            app:layout_constraintStart_toEndOf="@+id/title_street"
+            app:layout_constraintTop_toBottomOf="@+id/website"
+            tools:text="street" />
 
         <TextView
             android:id="@+id/city"
@@ -74,10 +84,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.city}"
-            tools:text="city"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/street" />
+            app:layout_constraintStart_toEndOf="@+id/title_city"
+            app:layout_constraintTop_toBottomOf="@+id/street"
+            tools:text="city" />
 
         <TextView
             android:id="@+id/zipcode"
@@ -87,23 +97,23 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.zipcode}"
-            tools:text="zipcode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city" />
+            app:layout_constraintStart_toEndOf="@+id/title_zipcode"
+            app:layout_constraintTop_toBottomOf="@+id/city"
+            tools:text="zipcode" />
 
         <TextView
             android:id="@+id/geoLat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.geo.lat}"
-            tools:text="geoLat"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zipcode" />
+            app:layout_constraintStart_toEndOf="@+id/title_geoLat"
+            app:layout_constraintTop_toBottomOf="@+id/zipcode"
+            tools:text="geoLat" />
 
         <TextView
             android:id="@+id/geoLng"
@@ -113,10 +123,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.geo.lng}"
-            tools:text="geoLng"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/geoLat" />
+            app:layout_constraintStart_toEndOf="@+id/title_geoLng"
+            app:layout_constraintTop_toBottomOf="@+id/geoLat"
+            tools:text="geoLng" />
 
         <TextView
             android:id="@+id/images"
@@ -130,6 +140,77 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/geoLng" />
+
+        <TextView
+            android:id="@+id/title_email"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_username" />
+
+        <TextView
+            android:id="@+id/title_website"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_website"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_email" />
+
+        <TextView
+            android:id="@+id/title_street"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_street"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_website" />
+
+        <TextView
+            android:id="@+id/title_city"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_street" />
+
+        <TextView
+            android:id="@+id/title_zipcode"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_zip_code"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_city" />
+
+        <TextView
+            android:id="@+id/title_geoLat"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_geo_latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_zipcode" />
+
+        <TextView
+            android:id="@+id/title_geoLng"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/title_geo_length"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_geoLat" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
