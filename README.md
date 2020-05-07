@@ -11,7 +11,6 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
   * [6 Stages of Fixing code](#6-Stages-of-Fixing-code)
 * [Questions](#questions)
@@ -74,15 +73,9 @@ git clone https://github.com/psztefko/ING-app.git
 - [ ] Navigation Intent
 - [ ] Tests
 
-## 6 Stages of Fixing code
-- [x] Denial and Isolation
-- [x] Anger
-- [x] Barging
-- [x] Depression
-- [x] Acceptance
-- [x] Fixed Bug
 
 ## Questions
+
 
 
 ## Additional Info
