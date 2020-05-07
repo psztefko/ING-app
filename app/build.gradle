@@ -105,4 +105,5 @@ dependencies {
     implementation "org.koin:koin-androidx-fragment:$koin_version"
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }
