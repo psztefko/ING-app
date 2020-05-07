@@ -75,7 +75,7 @@ git clone https://github.com/psztefko/ING-app.git
 
 
 ## Questions
-
+1. How to make di with safeargs and coin? Current approach is using parameters and Delegates, but it is not working properly is there any way to fix bug [CommentFragment], [PostFragment]
 
 
 ## Additional Info
