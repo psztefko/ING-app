@@ -8,22 +8,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentUserBinding
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.OnMapReadyCallback
+import kotlinx.android.synthetic.main.fragment_user.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import kotlin.properties.Delegates
 
-class UserFragment : Fragment() {
+class UserFragment : Fragment(), OnMapReadyCallback {
     // Why kotlin sugested Delegates
     var args by Delegates.notNull<Int>()
     private val viewModel: UserViewModel by sharedViewModel{ parametersOf(args) }
 
-    /*
-    // Google maps
-    private lateinit var mapView: MapView
     private lateinit var mMap: GoogleMap
-    */
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,20 +65,25 @@ class UserFragment : Fragment() {
         return binding.root
     }
 
-    /*override fun onMapReady(googleMap: GoogleMap) {
+    // It is not necessary in lite mode of maps
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        map.onCreate(savedInstanceState)
+        map.onResume()
+        map.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val lat = viewModel.user.value?.address?.geo?.lat?.toDouble()
         val lng = viewModel.user.value?.address?.geo?.lng?.toDouble()
-        val userLocation = lat?.let { lat ->
-            lng?.let { lng ->
-                LatLng(lat, lng)
-            }
-        }
-        mMap.addMarker(userLocation?.let { MarkerOptions().position(it) })
-    }*/
+        var userLocation = LatLng(0.0, 0.0)
+        if(lat != null && lng != null) userLocation = LatLng(lat, lng)
+        mMap.addMarker(MarkerOptions().position(userLocation))
+    }
 
 
     // https://developers.google.com/maps/documentation/android-sdk/map#mapview
     // We don't really need fully interactive mode because we only show location
-    // We can easily use lite mode of google maps
+    // We can easily use lite mode of google maps, but it's documented badly
 }
