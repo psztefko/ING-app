@@ -65,7 +65,6 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         return binding.root
     }
 
-    // It is not necessary in lite mode of maps
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         map.onCreate(savedInstanceState)
@@ -73,6 +72,8 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         map.getMapAsync(this)
     }
 
+
+    // TODO: change how i pass parameter, passing lat and lng as safeargs???
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val lat = viewModel.user.value?.address?.geo?.lat?.toDouble()

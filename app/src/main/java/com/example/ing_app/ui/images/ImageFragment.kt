@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.ing_app.databinding.FragmentImagesBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class ImageFragment : Fragment() {
@@ -27,11 +28,9 @@ class ImageFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        /*val adapter = PhotoGridAdapter( PhotoGridAdapter.OnClickListener {
-                photo -> viewModel.onImageFullImageClicked(photo.url)
+        binding.photoGrid.adapter = PhotoGridAdapter( PhotoGridAdapter.OnClickListener {
+            photo -> viewModel.onImageFullImageClicked(photo.url)
         })
-
-        binding.adapter = adapter*/
 
         return binding.root
     }

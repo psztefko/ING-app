@@ -10,6 +10,7 @@ import com.example.ing_app.common.Result
 import com.example.ing_app.common.ResultType
 import com.example.ing_app.domain.Album
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class ImageViewModel (private val photoKey: Int = 0,
     private val imageRepository: ImageRepository): ViewModel(){
@@ -37,6 +38,7 @@ class ImageViewModel (private val photoKey: Int = 0,
     fun getAlbums(){
         viewModelScope.launch {
             val apiResult = imageRepository.getAlbumsFromUser(photoKey)
+            Timber.d("getAlbums ${apiResult}")
             getPhotos(apiResult)
         }
     }
@@ -46,6 +48,7 @@ class ImageViewModel (private val photoKey: Int = 0,
             if (isResultSuccess(result.resultType)) {
                 result.data?.forEach {
                     val apiResult = imageRepository.getPhotosFromAlbum(it.albumId)
+                    Timber.d("getPhotos ${apiResult}")
                     updatePhotos(apiResult)
                 }
             } else {
