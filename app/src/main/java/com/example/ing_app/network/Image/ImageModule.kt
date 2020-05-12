@@ -17,7 +17,7 @@ object ImageModule {
                 get()
         ) }
         single { ImageRepository(photoService = get()) }
-        viewModel {ImageViewModel(imageRepository = get())}
+        viewModel {(userId: Int) -> ImageViewModel(userId, imageRepository = get()) }
     }
 
     private fun provideApiSerice(api: ImageApi): PhotoService{

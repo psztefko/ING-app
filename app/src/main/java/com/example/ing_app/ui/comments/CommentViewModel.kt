@@ -19,6 +19,10 @@ class CommentViewModel (private val commentKey: Int = 0,
     val isErrorLiveData: LiveData<Boolean>
         get() = _isErrorLiveData
 
+    private val _navigateToPosts = MutableLiveData<Boolean?>()
+    val navigateToPosts: LiveData<Boolean?>
+        get() = _navigateToPosts
+
     init {
         getComments()
     }
@@ -37,6 +41,14 @@ class CommentViewModel (private val commentKey: Int = 0,
             onResultError()
         }
 
+    }
+
+    fun doneNavigating() {
+        _navigateToPosts.value = null
+    }
+
+    fun onClose() {
+        _navigateToPosts.value = true
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {

@@ -19,6 +19,14 @@ class UserViewModel (private val userKey: Int = 0,
     val isErrorLiveData: LiveData<Boolean>
         get() = _isErrorLiveData
 
+    private val _navigateToSelectedPhotos = MutableLiveData<Int>()
+    val navigateToSelectedPhotos: LiveData<Int>
+        get() = _navigateToSelectedPhotos
+
+    private val _navigateToPosts = MutableLiveData<Boolean?>()
+    val navigateToPosts: LiveData<Boolean?>
+        get() = _navigateToPosts
+
     init {
         getUser()
     }
@@ -37,6 +45,22 @@ class UserViewModel (private val userKey: Int = 0,
             onResultError()
         }
 
+    }
+
+    fun onUserPhotosClicked(id: Int) {
+        _navigateToSelectedPhotos.value = id
+    }
+
+    fun displayPhotosCopmlete() {
+        _navigateToSelectedPhotos.value = null
+    }
+
+    fun doneNavigating() {
+        _navigateToPosts.value = null
+    }
+
+    fun onClose() {
+        _navigateToPosts.value = true
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {

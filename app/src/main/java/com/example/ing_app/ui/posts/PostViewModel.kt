@@ -27,6 +27,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private val _navigateToSelectedComments = MutableLiveData<Int>()
     val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
+
+    private val _isErrorLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val isErrorLiveData: LiveData<Boolean>
+        get() = _isErrorLiveData
   
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
@@ -80,6 +84,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private fun isResultSuccess(resultType: ResultType): Boolean {
         return resultType == ResultType.SUCCESS
     }
+
+    private fun onResultError() = _isErrorLiveData.postValue(true)
 
     fun onPostUserClicked(id: Int) {
         _navigateToSelectedUser.value = id

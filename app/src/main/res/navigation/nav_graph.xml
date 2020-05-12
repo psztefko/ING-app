@@ -31,10 +31,14 @@
             android:defaultValue="1"
             />
         <action
-            android:id="@+id/user_to_googlemaps" />
-        <action
             android:id="@+id/user_to_images"
             app:destination="@id/fragment_images" />
+        <action
+            android:id="@+id/user_to_posts"
+            app:destination="@id/fragment_post"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/fragment_post"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -47,6 +51,12 @@
             app:argType="integer"
             android:defaultValue="1"
             />
+        <action
+            android:id="@+id/comments_to_posts"
+            app:destination="@id/fragment_post"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/fragment_post"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -54,6 +64,11 @@
         android:name="com.example.ing_app.ui.images.ImageFragment"
         android:label="fragment_images"
         tools:layout="@layout/fragment_images">
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="1"
+            />
         <action
             android:id="@+id/images_to_images_fullsize"
             app:destination="@id/fragment_images_fullsize" />

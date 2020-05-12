@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
+import timber.log.Timber
 
 // Two listeners (propably not the best idea but android docs are literally the worst)
 class PostAdapter(private val userClickListener: UserClickListener, private val commentClickListener: CommentClickListener) :
@@ -49,7 +50,9 @@ class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 }
 
 class UserClickListener(val ClickListener: (userId: Int) -> Unit) {
-    fun onUserClick(post: Post) = ClickListener(post.userId)
+    fun onUserClick(post: Post) {
+        ClickListener(post.userId)
+    }
 }
 
 class CommentClickListener(val ClickListener: (id: Int) -> Unit) {

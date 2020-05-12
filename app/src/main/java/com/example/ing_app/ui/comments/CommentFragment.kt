@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentCommentsBinding
 import com.example.ing_app.ui.user.UserFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class CommentFragment : Fragment() {
@@ -27,6 +29,8 @@ class CommentFragment : Fragment() {
 
         args = UserFragmentArgs.fromBundle(requireArguments()).id
 
+        Timber.d("On comment args given: ${args}")
+
         binding.viewModel = viewModel
 
         val adapter = CommentAdapter()
@@ -35,6 +39,14 @@ class CommentFragment : Fragment() {
         viewModel.comments.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        viewModel.navigateToPosts.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController().navigate(
+                    CommentFragmentDirections.commentsToPosts())
+                    viewModel.doneNavigating()
             }
         })
 
