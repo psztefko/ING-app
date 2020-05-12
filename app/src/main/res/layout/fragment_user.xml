@@ -18,6 +18,16 @@
         tools:context=".UserFragment">
 
         <TextView
+            android:id="@+id/title_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,10 +35,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.username}"
-            tools:text="username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/title_username"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="username" />
 
         <TextView
             android:id="@+id/email"
@@ -38,10 +48,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.email}"
-            tools:text="email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username" />
+            app:layout_constraintStart_toEndOf="@+id/title_email"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            tools:text="email" />
 
         <TextView
             android:id="@+id/website"
@@ -51,10 +61,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.website}"
-            tools:text="website"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
+            app:layout_constraintStart_toEndOf="@+id/title_website"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            tools:text="website" />
 
         <TextView
             android:id="@+id/street"
@@ -64,10 +74,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.street}"
-            tools:text="street"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/website" />
+            app:layout_constraintStart_toEndOf="@+id/title_street"
+            app:layout_constraintTop_toBottomOf="@+id/website"
+            tools:text="street" />
 
         <TextView
             android:id="@+id/city"
@@ -77,10 +87,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.city}"
-            tools:text="city"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/street" />
+            app:layout_constraintStart_toEndOf="@+id/title_city"
+            app:layout_constraintTop_toBottomOf="@+id/street"
+            tools:text="city" />
 
         <TextView
             android:id="@+id/zipcode"
@@ -92,8 +102,9 @@
             android:text="@{viewModel.user.address.zipcode}"
             tools:text="zipcode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/city" />
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city"
+             />
 
         <Button
             android:id="@+id/button"

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ING-app</string>
+    <string name="Photos">Przejdź do zdjęć</string>
+
+    <string name="title_username">Nazwa użytkownika:</string>
+    <string name="title_email">Email:</string>
+    <string name="title_website">Strona:</string>
+    <string name="title_street">Ulica:</string>
+    <string name="title_city">Miasto:</string>
+    <string name="title_zip_code">Kod pocztowy:</string>
+    <string name="title_geo_length">Długość:</string>
+    <string name="title_geo_latitude">Szerokość:</string>
+    <string name="comment_title">Tytuł:</string>
+</resources>

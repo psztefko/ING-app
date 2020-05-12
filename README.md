@@ -11,7 +11,6 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
   * [6 Stages of Fixing code](#6-Stages-of-Fixing-code)
 * [Questions](#questions)
@@ -23,12 +22,10 @@ Main goal of our app is to download, parse and display data from [JSONPlaceholde
 
 This task may look simple, but we have already discovered that it isn’t.
 
-Through making this app we want to learn programming in Kotlin language starting from basic parts like learning the syntax to more complicated stuff like following the optimal architecture rules like MVVM.
-
-Since our last meeting we sadly had to downgrade our functionality with the aim of improving the architecture and readability of our code. We hope that this change will save us a lot of time in future.
+Through making this app we want to learn programming in Kotlin language starting from basic parts like learning the syntax to more complicated stuff like following the optimal architecture rules of MVVM.
 
 
-<img src="./Screenshots/Screenshot" alt="Screenshot of application" width=200>
+<img src="./Screenshots/app.gif" alt="Screenshot of application" width=200>
 
 ### Built With
 This section provide information about frameworks and technologies that our project is currently using
@@ -74,20 +71,12 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Showing Comments from user post
 - [ ] Showing Photos
 - [ ] Navigation Intent
+- [ ] Tests
 
-## 6 Stages of Fixing code
-- [x] Denial and Isolation
-- [x] Anger
-- [x] Barging
-- [x] Depression
-- [x] Acceptance
-- [x] Fixed Bug
 
 ## Questions
-1. Is it worth to change Deferred type to Suspend function in Service [Retrofit +2.6.0].
-2. Should we make models to show in ViewModel or just make fields with certain values
-3. Is it possible to make pagination in adapter RecyclerView to scroll through app fluently
-4. How to transfer domain object to a model effectively e.g PostService + UserService + CommentService -> PostModel
+1. How to make di with safeargs and coin? Current approach is using parameters and Delegates, but it is not working properly is there any way to fix bug [CommentFragment], [PostFragment]
+
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)

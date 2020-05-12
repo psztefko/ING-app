@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">ING-app</string>
     <string name="Photos">Gallery</string>
+    <string name="title_username">Username:</string>
+    <string name="title_email">Email:</string>
+    <string name="title_website">Website:</string>
+    <string name="title_street">Street:</string>
+    <string name="title_city">City:</string>
+    <string name="title_zip_code">Zip code:</string>
+    <string name="title_geo_length">Geo length:</string>
+    <string name="title_geo_latitude">Geo latitude:</string>
+    <string name="comment_title">Title:</string>
 </resources>
