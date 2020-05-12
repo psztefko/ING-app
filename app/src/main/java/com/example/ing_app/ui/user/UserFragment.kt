@@ -62,6 +62,8 @@ class UserFragment : Fragment(), OnMapReadyCallback {
             }
         })
 
+        Timber.d("viewModel hash: ${viewModel.hashCode()}")
+
         return binding.root
     }
 
@@ -71,7 +73,6 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         map.onResume()
         map.getMapAsync(this)
     }
-
 
     // TODO: change how i pass parameter, passing lat and lng as safeargs???
     override fun onMapReady(googleMap: GoogleMap) {
