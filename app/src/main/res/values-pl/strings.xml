@@ -11,4 +11,7 @@
     <string name="title_geo_length">Długość:</string>
     <string name="title_geo_latitude">Szerokość:</string>
     <string name="comment_title">Tytuł:</string>
-</resources>
+    <string name="whoops">O rety!</string>
+    <string name="slow_or_no_internet_connection_nplease_check_your_internet_settings">Problem z połączeniem internetowym.\nSprawdź ustawienia sieci</string>
+    <string name="pull_down_to_refresh">Przeciągnij w dół aby odświeżyć</string>
+    <string name="error_image">error image</string></resources>

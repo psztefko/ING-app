@@ -10,4 +10,8 @@
     <string name="title_geo_length">Geo length:</string>
     <string name="title_geo_latitude">Geo latitude:</string>
     <string name="comment_title">Title:</string>
+    <string name="whoops">Whoops</string>
+    <string name="slow_or_no_internet_connection_nplease_check_your_internet_settings">Slow or no internet connection.\nPlease check your internet settings</string>
+    <string name="pull_down_to_refresh">Pull down to refresh</string>
+    <string name="error_image">error image</string>
 </resources>
