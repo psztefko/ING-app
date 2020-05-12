@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ING-app</string>
     <string name="Photos">Gallery</string>
+
     <string name="title_username">Username:</string>
     <string name="title_email">Email:</string>
     <string name="title_website">Website:</string>
@@ -10,4 +11,7 @@
     <string name="title_geo_length">Geo length:</string>
     <string name="title_geo_latitude">Geo latitude:</string>
     <string name="comment_title">Title:</string>
+
+    <string name="user_icon_description">Image represents user icon</string>
+    <string name="comment_icon_description">Image represents comment icon</string>
 </resources>

@@ -44,7 +44,6 @@ class UserViewModel (private val userKey: Int = 0,
         } else {
             onResultError()
         }
-
     }
 
     fun onUserPhotosClicked(id: Int) {

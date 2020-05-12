@@ -11,4 +11,7 @@
     <string name="title_geo_length">Długość:</string>
     <string name="title_geo_latitude">Szerokość:</string>
     <string name="comment_title">Tytuł:</string>
+
+    <string name="user_icon_description">Obrazek reprezentuje ikonkę użytkownika</string>
+    <string name="comment_icon_description">Obrazek reprezentuje ikonkę komentarzy</string>
 </resources>
