@@ -6,9 +6,12 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import timber.log.Timber
+import java.lang.Exception
 
 class PostApi(private val context: Context){
     private val BASE_URL = "https://jsonplaceholder.typicode.com"
+
 
     // Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
     // full Kotlin compatibility.
@@ -25,6 +28,6 @@ class PostApi(private val context: Context){
         .build()
 
     fun getApiService(): PostService {
-        return retrofit.create(PostService::class.java)
+            return retrofit.create(PostService::class.java)
     }
 }

@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragment_connection_error"
-        android:name="com.example.ing_app.fragment_connection_error"
+        android:name="com.example.ing_app.common.fragment_connection_error"
         android:label="fragment_connection_error"
         tools:layout="@layout/fragment_connection_error" />
 

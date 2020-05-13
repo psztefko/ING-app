@@ -1,7 +1,10 @@
 package com.example.ing_app.ui.posts
 
+import android.text.BoringLayout
+import android.view.MotionEvent
 import androidx.lifecycle.LiveData
 import android.view.View
+import androidx.core.view.MotionEventCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +13,7 @@ import com.example.ing_app.common.ResultType
 import com.example.ing_app.domain.Post as DomainPost
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -27,15 +31,13 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
 
-    private val _isErrorLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    val isErrorLiveData: LiveData<Boolean>
-        get() = _isErrorLiveData
-
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val connectionError: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getPosts()
     }
+
 
     private fun getPosts() {
         viewModelScope.launch {
@@ -50,25 +52,35 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         loadingVisibility.value = View.VISIBLE
         viewModelScope.launch {
             // Better way but still can do better
-            var temporaryUserId = domainPost.data!![0].userId
-            var userResult = postRepository.getUserFromPost(temporaryUserId)
-            domainPost.data.forEach { post ->
+            var temporaryUserId = domainPost.data?.get(0)?.userId
+            if(temporaryUserId == null){
+                loadingVisibility.value = View.GONE
+                connectionError.value = View.VISIBLE
+                while (true){
+                    delay(500)
+                }
+            }
+            var userResult = temporaryUserId?.let { postRepository.getUserFromPost(it) }
+            domainPost.data?.forEach { post ->
                 val commentResult = postRepository.getCommentsFromPost(post.id)
                 if (post.userId != temporaryUserId) {
                     temporaryUserId = post.userId
-                    userResult = postRepository.getUserFromPost(temporaryUserId)
+                    userResult = postRepository.getUserFromPost(temporaryUserId!!)
                 }
-                if(isResultSuccess(userResult.resultType) && isResultSuccess(commentResult.resultType)) {
+                if(userResult?.resultType?.let { isResultSuccess(it) }!! && isResultSuccess(commentResult.resultType)) {
                     val postData = UiPost(
                         id = post.id,
                         userId = post.userId,
-                        userName = userResult.data!!.username,
+                        userName = userResult?.data!!.username,
                         title = post.title,
                         body = post.body,
                         commentsAmount = commentResult.data!!.size
                     )
                     Timber.d("Postdata = $postData")
                     uiPostList.add(postData)
+                }else{
+                    loadingVisibility.value = View.GONE
+                    connectionError.value = View.VISIBLE
                 }
                 updatePosts(uiPostList.toList())
             }
@@ -82,10 +94,6 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun isResultSuccess(resultType: ResultType): Boolean {
         return resultType == ResultType.SUCCESS
-    }
-
-    private fun onResultError() {
-        _isErrorLiveData.postValue(true)
     }
 
     fun onPostUserClicked(id: Int) {
