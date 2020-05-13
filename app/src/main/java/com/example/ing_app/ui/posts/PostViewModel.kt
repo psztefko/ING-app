@@ -13,9 +13,8 @@ import com.example.ing_app.repository.PostRepository
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
-  
+
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
         get() = _posts
@@ -31,7 +30,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private val _isErrorLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val isErrorLiveData: LiveData<Boolean>
         get() = _isErrorLiveData
-  
+
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
@@ -85,7 +84,9 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         return resultType == ResultType.SUCCESS
     }
 
-    private fun onResultError() = _isErrorLiveData.postValue(true)
+    private fun onResultError() {
+        _isErrorLiveData.postValue(true)
+    }
 
     fun onPostUserClicked(id: Int) {
         _navigateToSelectedUser.value = id
@@ -103,3 +104,4 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         _navigateToSelectedComments.value = null
     }
 }
+

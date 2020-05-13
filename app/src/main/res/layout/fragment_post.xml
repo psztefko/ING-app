@@ -8,6 +8,9 @@
         <variable
             name="viewModel"
             type="com.example.ing_app.ui.posts.PostViewModel" />
+        <variable
+            name="repository"
+            type="com.example.ing_app.repository.PostRepository" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +38,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/errorImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/error_image"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/error_screen" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
