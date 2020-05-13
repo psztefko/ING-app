@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.ing_app.databinding.FragmentImagesBinding
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 import kotlin.properties.Delegates
 
 class ImageFragment : Fragment() {
     var args by Delegates.notNull<Int>()
-    private val viewModel: ImageViewModel by sharedViewModel{ parametersOf(args) }
+    private val viewModel: ImageViewModel by viewModel{ parametersOf(args) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

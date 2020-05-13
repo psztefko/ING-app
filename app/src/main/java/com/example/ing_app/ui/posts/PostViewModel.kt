@@ -88,7 +88,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         return resultType == ResultType.SUCCESS
     }
 
-    private fun onResultError() = _isErrorLiveData.postValue(true)
+    private fun onResultError() {
+        _isErrorLiveData.postValue(true)
+
+    }
 
     fun onPostUserClicked(id: Int) {
         _navigateToSelectedUser.value = id

@@ -1,7 +1,6 @@
 package com.example.ing_app.network.Comment
 
 import android.content.Context
-import com.example.ing_app.network.Post.PostService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

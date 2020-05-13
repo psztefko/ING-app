@@ -8,14 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentUserBinding
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.OnMapReadyCallback
 import kotlinx.android.synthetic.main.fragment_user.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import kotlin.properties.Delegates
@@ -23,7 +21,7 @@ import kotlin.properties.Delegates
 class UserFragment : Fragment(), OnMapReadyCallback {
     // Why kotlin sugested Delegates
     var args by Delegates.notNull<Int>()
-    private val viewModel: UserViewModel by sharedViewModel{ parametersOf(args) }
+    private val viewModel: UserViewModel by viewModel{ parametersOf(args) }
 
     private lateinit var mMap: GoogleMap
 

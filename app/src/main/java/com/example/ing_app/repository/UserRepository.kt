@@ -9,8 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class UserRepository (private val userService: UserService){
-    suspend fun getUserFromPost(postId:Int): Result<User> {
+class UserRepository(private val userService: UserService) {
+    suspend fun getUserFromPost(postId: Int): Result<User> {
         var result: Result<User> = Result.success(User())
         withContext(Dispatchers.IO) {
             try {
