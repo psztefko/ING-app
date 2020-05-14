@@ -1,5 +1,6 @@
 package com.example.ing_app.ui.user
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,9 @@ import com.example.ing_app.common.ResultType
 import com.example.ing_app.common.Result
 import com.example.ing_app.domain.User
 import com.example.ing_app.repository.UserRepository
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class UserViewModel (private val userKey: Int = 0,
                      private val userRepository: UserRepository): ViewModel(){
@@ -40,6 +43,7 @@ class UserViewModel (private val userKey: Int = 0,
 
     private fun updateUser(result: Result<User>) {
         if (isResultSuccess(result.resultType)) {
+            Timber.d("onUpdateUserSuccess called")
             _user.postValue(result.data)
         } else {
             onResultError()
