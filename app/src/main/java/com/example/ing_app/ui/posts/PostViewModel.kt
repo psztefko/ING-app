@@ -1,9 +1,11 @@
 package com.example.ing_app.ui.posts
 
 import android.text.BoringLayout
+import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.lifecycle.LiveData
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.MotionEventCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,8 +18,9 @@ import com.example.ing_app.repository.PostRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.lang.Math.abs
 
-class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
+class PostViewModel(private val postRepository: PostRepository) : ViewModel(), GestureDetector.OnGestureListener {
 
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
@@ -33,17 +36,41 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val connectionError: MutableLiveData<Int> = MutableLiveData()
+    val postsVisibility: MutableLiveData<Int> = MutableLiveData()
+
+    lateinit var gestureDetector: GestureDetector
+    var y2 :Float = 0.0f
+    var y1 :Float = 0.0f
 
     init {
         getPosts()
     }
 
+    fun onTouchEvent(event: MotionEvent?): Boolean{
+        gestureDetector.onTouchEvent(event)
+
+        when(event?.action){
+            0 ->{
+                y1 = event.y
+            }
+
+            1 ->{
+                y2 = event.y
+
+                if(y2 - y1 > 150){
+                    Timber.d("onSwipeDown")
+                }
+            }
+        }
+        return onTouchEvent(event)
+    }
 
     private fun getPosts() {
         viewModelScope.launch {
             Timber.d("getPosts")
             val apiResult = postRepository.getPosts()
             transformPost(apiResult)
+            postsVisibility.value = View.VISIBLE
         }
     }
 
@@ -55,7 +82,9 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
             var temporaryUserId = domainPost.data?.get(0)?.userId
             if(temporaryUserId == null){
                 loadingVisibility.value = View.GONE
+                postsVisibility.value = View.GONE
                 connectionError.value = View.VISIBLE
+
                 while (true){
                     delay(500)
                 }
@@ -80,6 +109,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                     uiPostList.add(postData)
                 }else{
                     loadingVisibility.value = View.GONE
+                    postsVisibility.value = View.GONE
                     connectionError.value = View.VISIBLE
                 }
                 updatePosts(uiPostList.toList())
@@ -110,6 +140,30 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun displayCommentsComplete() {
         _navigateToSelectedComments.value = null
+    }
+
+
+    //no need to use them but they have to be implemented
+    override fun onShowPress(p0: MotionEvent?) {
+    }
+
+    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
+        return false
+    }
+
+    override fun onDown(p0: MotionEvent?): Boolean {
+        return false
+    }
+
+    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        return false
+    }
+
+    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
+        return false
+    }
+
+    override fun onLongPress(p0: MotionEvent?) {
     }
 }
 
