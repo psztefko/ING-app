@@ -46,11 +46,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#BEFF6F14"
+        android:background="@color/colorPrimary"
         android:clickable="false"
         android:padding="8dp"
         android:text="@string/pull_down_to_refresh"
-        android:textColor="#000000"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error_message" />

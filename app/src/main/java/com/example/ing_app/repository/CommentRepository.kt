@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class CommentRepository (private val commentService: CommentService){
+
     suspend fun getCommentsFromPost(postId:Int): Result<List<Comment>> {
         var result: Result<List<Comment>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {

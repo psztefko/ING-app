@@ -83,8 +83,8 @@ dependencies {
     // Google Maps
     implementation "com.google.android.gms:play-services-maps:17.0.0"
 
-    // Glide for images
-    implementation "com.github.bumptech.glide:glide:$glide_version"
+    // Picasso for images
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
     // Koin
     implementation "org.koin:koin-android:$koin_version"
@@ -94,8 +94,8 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
     // Room database for cache and offline experience
-    // implementation "androidx.room:room-runtime:$room_version"
-    // kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     // WorkManager for fetching data in background
     // implementation "androidx.work:work-runtime-ktx:$work_version"
@@ -105,4 +105,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // Additional better logging for http request
+    // implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 }

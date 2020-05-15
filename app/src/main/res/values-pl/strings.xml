@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ING-app</string>
-    <string name="Photos">Przejdź do zdjęć</string>
+    <string name="Photos">Galeria</string>
 
     <string name="title_username">Nazwa użytkownika:</string>
     <string name="title_email">Email:</string>
@@ -8,12 +8,14 @@
     <string name="title_street">Ulica:</string>
     <string name="title_city">Miasto:</string>
     <string name="title_zip_code">Kod pocztowy:</string>
-    <string name="title_geo_length">Długość:</string>
-    <string name="title_geo_latitude">Szerokość:</string>
     <string name="comment_title">Tytuł:</string>
 
     <string name="user_icon_description">Obrazek reprezentuje ikonkę użytkownika</string>
     <string name="comment_icon_description">Obrazek reprezentuje ikonkę komentarzy</string>
+    <string name="email_icon_description">Obrazek reprezentuje ikonkę emailu</string>
+    <string name="website_icon_description">IObrazek reprezentuje ikonkę strony internetowej</string>
+    <string name="address_icon_description">Obrazek reprezentuje ikonkę domu</string>
+    <string name="user_image_description">Zdjęcia użytkownika</string>
 
     <string name="whoops">O rety!</string>
     <string name="slow_or_no_internet_connection_nplease_check_your_internet_settings">Problem z połączeniem internetowym.\nSprawdź ustawienia sieci</string>
