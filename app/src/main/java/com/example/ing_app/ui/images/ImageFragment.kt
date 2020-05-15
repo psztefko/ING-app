@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.ing_app.databinding.FragmentImagesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class ImageFragment : Fragment() {
@@ -24,6 +25,8 @@ class ImageFragment : Fragment() {
         binding.lifecycleOwner = this
 
         args = ImageFragmentArgs.fromBundle(requireArguments()).userId
+
+        Timber.d("args $args")
 
         binding.viewModel = viewModel
 

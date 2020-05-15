@@ -12,8 +12,8 @@ import com.example.ing_app.domain.Album
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ImageViewModel (private val photoKey: Int = 0,
-    private val imageRepository: ImageRepository): ViewModel(){
+class ImageViewModel (private val userKey: Int = 0,
+                      private val imageRepository: ImageRepository): ViewModel(){
 
     private val _albums: MutableLiveData<List<Album>> = MutableLiveData()
     val albums: LiveData<List<Album>>
@@ -37,7 +37,8 @@ class ImageViewModel (private val photoKey: Int = 0,
 
     fun getAlbums(){
         viewModelScope.launch {
-            val apiResult = imageRepository.getAlbumsFromUser(photoKey)
+            Timber.d("getAlbums userKey: $userKey")
+            val apiResult = imageRepository.getAlbumsFromUser(userKey)
             Timber.d("getAlbums ${apiResult}")
             getPhotos(apiResult)
         }
@@ -47,7 +48,7 @@ class ImageViewModel (private val photoKey: Int = 0,
         viewModelScope.launch {
             if (isResultSuccess(result.resultType)) {
                 result.data?.forEach {
-                    val apiResult = imageRepository.getPhotosFromAlbum(it.albumId)
+                    val apiResult = imageRepository.getPhotosFromAlbum(it.id)
                     Timber.d("getPhotos ${apiResult}")
                     updatePhotos(apiResult)
                 }

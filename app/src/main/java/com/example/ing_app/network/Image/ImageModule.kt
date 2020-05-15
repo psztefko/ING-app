@@ -10,14 +10,15 @@ object ImageModule {
     val mainModule = module{
         single { ImageApi(androidContext()) }
         single {
-            provideApiSerice(
+            provideApiService(
                 get()
-        ) }
-        single { ImageRepository(photoService = get()) }
+            )
+        }
+        single { ImageRepository(imageService = get()) }
         viewModel {(userId: Int) -> ImageViewModel(userId, imageRepository = get()) }
     }
 
-    private fun provideApiSerice(api: ImageApi): PhotoService{
+    private fun provideApiService(api: ImageApi): ImageService{
         return api.getApiService()
     }
 }

@@ -12,7 +12,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,21 +25,18 @@ class UserFragment : Fragment(), OnMapReadyCallback {
     private val viewModel: UserViewModel by viewModel{ parametersOf(args) }
 
     private lateinit var mMap: GoogleMap
-    private var latLng: LatLng = LatLng(0.0,0.0)
+    private lateinit var latLng: LatLng
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Timber.d("onCreateView called")
         val binding = FragmentUserBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
 
         args = UserFragmentArgs.fromBundle(requireArguments()).id
-
-        Timber.d("On user args given: ${args}")
 
         binding.userListener = UserListener {
             it -> viewModel.onUserPhotosClicked(it)
@@ -66,7 +62,6 @@ class UserFragment : Fragment(), OnMapReadyCallback {
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                Timber.d("onUserObserve called")
                 val lat = it.address.geo.lat.toDouble()
                 val lng = it.address.geo.lng.toDouble()
                 latLng = LatLng(lat, lng)
@@ -79,16 +74,13 @@ class UserFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Timber.d("onActivityCreated called")
         super.onActivityCreated(savedInstanceState)
         map.onCreate(savedInstanceState)
         map.onResume()
         map.getMapAsync(this)
     }
 
-    // TODO: change how i pass parameter, passing lat and lng as safeargs???
     override fun onMapReady(googleMap: GoogleMap) {
-        Timber.d("onMapReady called")
         mMap = googleMap
     }
 
