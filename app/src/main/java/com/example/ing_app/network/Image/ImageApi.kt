@@ -1,13 +1,14 @@
 package com.example.ing_app.network.Image
 
 import android.content.Context
+import com.example.ing_app.R
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 
 class ImageApi (private val context: Context){
     private val BASE_URL = "https://jsonplaceholder.typicode.com"
@@ -18,9 +19,11 @@ class ImageApi (private val context: Context){
         .add(KotlinJsonAdapterFactory())
         .build()
 
-    private val logging = HttpLoggingInterceptor()
-
-    val okBuilder = OkHttpClient.Builder().addInterceptor(logging).build()
+    // Creating own timeout limits
+    private var okBuilder = OkHttpClient.Builder()
+        .readTimeout(R.integer.read_timeout.toLong(), TimeUnit.MILLISECONDS)
+        .connectTimeout(R.integer.connect_timeout.toLong(), TimeUnit.MILLISECONDS)
+        .build()
 
     // Use the Retrofit builder to build a retrofit object using a Moshi converter
     // with our Moshi object.
@@ -32,7 +35,6 @@ class ImageApi (private val context: Context){
         .build()
 
     fun getApiService(): ImageService {
-        logging.level = HttpLoggingInterceptor.Level.BODY
         return retrofit.create(ImageService::class.java)
     }
 }

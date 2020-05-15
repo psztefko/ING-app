@@ -18,7 +18,7 @@ object ImageModule {
         viewModel {(userId: Int) -> ImageViewModel(userId, imageRepository = get()) }
     }
 
-    private fun provideApiService(api: ImageApi): ImageService{
+    private fun provideApiService(api: ImageApi): ImageService {
         return api.getApiService()
     }
 }

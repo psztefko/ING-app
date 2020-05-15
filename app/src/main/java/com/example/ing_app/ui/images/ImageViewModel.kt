@@ -31,6 +31,10 @@ class ImageViewModel (private val userKey: Int = 0,
     val navigateToFullImage: LiveData<String>
         get() = _navigateToFullImage
 
+    private val _navigateToUser = MutableLiveData<Boolean?>()
+    val navigateToUser: LiveData<Boolean?>
+        get() = _navigateToUser
+
     init {
         getAlbums()
     }
@@ -68,6 +72,14 @@ class ImageViewModel (private val userKey: Int = 0,
 
     fun onImageFullImageClicked(photoUrl: String) {
         _navigateToFullImage.value = photoUrl
+    }
+
+    fun doneNavigating() {
+        _navigateToUser.value = null
+    }
+
+    fun onClose() {
+        _navigateToUser.value = true
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {

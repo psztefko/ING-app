@@ -16,7 +16,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 import kotlin.properties.Delegates
 
 class UserFragment : Fragment(), OnMapReadyCallback {
