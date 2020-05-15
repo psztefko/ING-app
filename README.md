@@ -62,7 +62,6 @@ git clone https://github.com/psztefko/ING-app.git
 <!-- ROADMAP -->
 ## Roadmap
 - [ ] Pagination for post
-- [ ] Showing Photos
 - [ ] Tests
 - [ ] Implementing cache
 - [ ] Quality of life improvments
