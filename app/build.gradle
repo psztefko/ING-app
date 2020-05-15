@@ -83,8 +83,8 @@ dependencies {
     // Google Maps
     implementation "com.google.android.gms:play-services-maps:17.0.0"
 
-    // Glide for images
-    implementation "com.github.bumptech.glide:glide:$glide_version"
+    // Picasso for images
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
     // Koin
     implementation "org.koin:koin-android:$koin_version"
