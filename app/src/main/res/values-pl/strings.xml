@@ -14,6 +14,9 @@
 
     <string name="user_icon_description">Obrazek reprezentuje ikonkę użytkownika</string>
     <string name="comment_icon_description">Obrazek reprezentuje ikonkę komentarzy</string>
+    <string name="email_icon_description">Obrazek reprezentuje ikonkę emailu</string>
+    <string name="website_icon_description">IObrazek reprezentuje ikonkę strony internetowej</string>
+    <string name="address_icon_description">Obrazek reprezentuje ikonkę domu</string>
 
     <string name="whoops">O rety!</string>
     <string name="slow_or_no_internet_connection_nplease_check_your_internet_settings">Problem z połączeniem internetowym.\nSprawdź ustawienia sieci</string>
