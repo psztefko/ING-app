@@ -70,7 +70,7 @@ git clone https://github.com/psztefko/ING-app.git
 - [x] Showing user info
 - [x] Showing Comments from user post
 - [ ] Showing Photos
-- [ ] Navigation Intent
+- [x] Navigation
 - [ ] Tests
 
 
