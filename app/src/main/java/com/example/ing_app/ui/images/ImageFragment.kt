@@ -26,8 +26,6 @@ class ImageFragment : Fragment() {
 
         args = ImageFragmentArgs.fromBundle(requireArguments()).userId
 
-        Timber.d("args $args")
-
         binding.viewModel = viewModel
 
         binding.photoGrid.adapter = PhotoGridAdapter( PhotoGridAdapter.OnClickListener {
