@@ -12,8 +12,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Roadmap](#roadmap)
-  * [6 Stages of Fixing code](#6-Stages-of-Fixing-code)
-* [Questions](#questions)
 * [Adictional Info](#additional-info)
 
 <!-- ABOUT THE PROJECT -->
@@ -35,6 +33,7 @@ This section provide information about frameworks and technologies that our proj
 * [Koin](https://insert-koin.io/)
 * [Timber](https://github.com/JakeWharton/timber)
 * [Material Icons](https://material.io/resources/icons/?style=baseline)
+* [Picasso](https://square.github.io/picasso/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -65,9 +64,6 @@ git clone https://github.com/psztefko/ING-app.git
 - [ ] Tests
 - [ ] Implementing cache
 - [ ] Quality of life improvments
-
-
-## Questions
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
