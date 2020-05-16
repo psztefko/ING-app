@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.ing_app.ui.posts.Post
 
-/*@Entity
+@Entity
 data class DatabasePost (
     @PrimaryKey
     val id: Int,
@@ -26,4 +26,4 @@ fun List<DatabasePost>.asDomainModel(): List<Post> {
             commentsAmount = it.commentsAmount
         )
     }
-}*/
+}
