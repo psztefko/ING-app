@@ -12,27 +12,17 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragmentLayoutConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:content="com.example.ing_app.ui.posts.PostFragment">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/posts_list"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="@{viewModel.postsVisibility}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.loadingVisibility}"
+            android:visibility="@{viewModel.loadingVisibility ?? View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,9 +34,9 @@
             android:layout_height="150dp"
             android:layout_marginBottom="24dp"
             android:contentDescription="@string/error_image"
+            android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/whoops"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_connection_error"
             tools:ignore="VectorDrawableCompat" />
@@ -85,12 +75,34 @@
             android:background="#BEFF6F14"
             android:clickable="false"
             android:padding="8dp"
-            android:visibility="@{viewModel.connectionError ?? View.GONE}"
             android:text="@string/pull_down_to_refresh"
             android:textColor="#000000"
+            android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/error_message" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/posts_list"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{viewModel.postsVisibility}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

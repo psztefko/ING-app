@@ -1,26 +1,27 @@
 package com.example.ing_app.ui.posts
 
-import android.text.BoringLayout
-import android.view.GestureDetector
-import android.view.MotionEvent
-import androidx.lifecycle.LiveData
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.MotionEventCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.ing_app.R
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.ResultType
-import com.example.ing_app.domain.Post as DomainPost
-import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.lang.Math.abs
+import com.example.ing_app.domain.Post as DomainPost
+import com.example.ing_app.ui.posts.Post as UiPost
+import kotlinx.android.synthetic.main.fragment_post.view.*
 
-class PostViewModel(private val postRepository: PostRepository) : ViewModel(), GestureDetector.OnGestureListener {
+class PostViewModel(private val postRepository: PostRepository) : ViewModel(){
 
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
@@ -38,32 +39,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel(), G
     val connectionError: MutableLiveData<Int> = MutableLiveData()
     val postsVisibility: MutableLiveData<Int> = MutableLiveData()
 
-    lateinit var gestureDetector: GestureDetector
-    var y2 :Float = 0.0f
-    var y1 :Float = 0.0f
-
     init {
         getPosts()
     }
 
-    fun onTouchEvent(event: MotionEvent?): Boolean{
-        gestureDetector.onTouchEvent(event)
-
-        when(event?.action){
-            0 ->{
-                y1 = event.y
-            }
-
-            1 ->{
-                y2 = event.y
-
-                if(y2 - y1 > 150){
-                    Timber.d("onSwipeDown")
-                }
-            }
-        }
-        return onTouchEvent(event)
-    }
 
     private fun getPosts() {
         viewModelScope.launch {
@@ -75,6 +54,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel(), G
     }
 
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
+
+
         val uiPostList: MutableList<UiPost> = mutableListOf()
         loadingVisibility.value = View.VISIBLE
         viewModelScope.launch {
@@ -117,6 +98,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel(), G
         }
     }
 
+
     private fun updatePosts(result: List<UiPost>) {
         loadingVisibility.value = View.GONE
         _posts.postValue(result)
@@ -140,30 +122,6 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel(), G
 
     fun displayCommentsComplete() {
         _navigateToSelectedComments.value = null
-    }
-
-
-    //no need to use them but they have to be implemented
-    override fun onShowPress(p0: MotionEvent?) {
-    }
-
-    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
-        return false
-    }
-
-    override fun onDown(p0: MotionEvent?): Boolean {
-        return false
-    }
-
-    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-        return false
-    }
-
-    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-        return false
-    }
-
-    override fun onLongPress(p0: MotionEvent?) {
     }
 }
 
