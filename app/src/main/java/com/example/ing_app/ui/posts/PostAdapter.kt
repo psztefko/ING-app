@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
-import timber.log.Timber
 
 // Two listeners (probably not the best idea but android docs are literally the worst)
 class PostAdapter(private val userClickListener: UserClickListener, private val commentClickListener: CommentClickListener) :

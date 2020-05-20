@@ -70,15 +70,11 @@
             android:defaultValue="1"
             />
         <action
-            android:id="@+id/images_to_images_fullsize"
-            app:destination="@id/fragment_images_fullsize" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragment_images_fullsize"
-        android:name="com.example.ing_app.ui.images.ImageFullsizeFragment"
-        android:label="fragment_images_fullsize"
-        tools:layout="@layout/fragment_images_fullsize">
+            android:id="@+id/images_to_user"
+            app:destination="@id/fragment_user"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/fragment_user"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

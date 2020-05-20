@@ -25,7 +25,7 @@ import com.example.ing_app.domain.Photo
         }
 
         override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean {
-            return oldItem.photoId == newItem.photoId
+            return oldItem.id == newItem.id
         }
      }
 

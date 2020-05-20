@@ -10,22 +10,21 @@ import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentUserBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.OnMapReadyCallback
 import kotlinx.android.synthetic.main.fragment_user.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import timber.log.Timber
 import kotlin.properties.Delegates
 
 class UserFragment : Fragment(), OnMapReadyCallback {
     // Why kotlin sugested Delegates
     var args by Delegates.notNull<Int>()
-    private val viewModel: UserViewModel by sharedViewModel{ parametersOf(args) }
+    private val viewModel: UserViewModel by viewModel{ parametersOf(args) }
 
     private lateinit var mMap: GoogleMap
+    private lateinit var latLng: LatLng
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +36,6 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         binding.lifecycleOwner = this
 
         args = UserFragmentArgs.fromBundle(requireArguments()).id
-
-        Timber.d("On user args given: ${args}")
 
         binding.userListener = UserListener {
             it -> viewModel.onUserPhotosClicked(it)
@@ -62,7 +59,15 @@ class UserFragment : Fragment(), OnMapReadyCallback {
             }
         })
 
-        Timber.d("viewModel hash: ${viewModel.hashCode()}")
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                val lat = it.address.geo.lat.toDouble()
+                val lng = it.address.geo.lng.toDouble()
+                latLng = LatLng(lat, lng)
+                mMap.addMarker(MarkerOptions().position(latLng))
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            }
+        })
 
         return binding.root
     }
@@ -74,16 +79,9 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         map.getMapAsync(this)
     }
 
-    // TODO: change how i pass parameter, passing lat and lng as safeargs???
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val lat = viewModel.user.value?.address?.geo?.lat?.toDouble()
-        val lng = viewModel.user.value?.address?.geo?.lng?.toDouble()
-        var userLocation = LatLng(0.0, 0.0)
-        if(lat != null && lng != null) userLocation = LatLng(lat, lng)
-        mMap.addMarker(MarkerOptions().position(userLocation))
     }
-
 
     // https://developers.google.com/maps/documentation/android-sdk/map#mapview
     // We don't really need fully interactive mode because we only show location

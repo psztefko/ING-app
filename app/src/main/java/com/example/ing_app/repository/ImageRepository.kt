@@ -5,17 +5,18 @@ import com.example.ing_app.common.exception.CancelledFetchDataException
 import com.example.ing_app.common.exception.NetworkException
 import com.example.ing_app.domain.Photo
 import com.example.ing_app.domain.Album
-import com.example.ing_app.network.Image.PhotoService
+import com.example.ing_app.network.Image.ImageService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class ImageRepository (private val photoService: PhotoService){
+class ImageRepository (private val imageService: ImageService){
+
     suspend fun getAlbumsFromUser(userId:Int): Result<List<Album>> {
         var result: Result<List<Album>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
             try{
-                val request = photoService.getAlbumsFromUser(userId)
+                val request = imageService.getAlbumsFromUser(userId)
                 val response = request.await()
                 Timber.d("onAlbumFromUserReceived $request")
 
@@ -37,7 +38,7 @@ class ImageRepository (private val photoService: PhotoService){
         var result: Result<List<Photo>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
             try{
-                val request = photoService.getPhotosFromAlbum(albumId)
+                val request = imageService.getPhotosFromAlbum(albumId)
                 val response = request.await()
                 Timber.d("onPhotosFromAlbumReceived $request")
 

@@ -1,15 +1,22 @@
 <resources>
     <string name="app_name">ING-app</string>
     <string name="Photos">Gallery</string>
+
     <string name="title_username">Username:</string>
     <string name="title_email">Email:</string>
     <string name="title_website">Website:</string>
     <string name="title_street">Street:</string>
     <string name="title_city">City:</string>
     <string name="title_zip_code">Zip code:</string>
-    <string name="title_geo_length">Geo length:</string>
-    <string name="title_geo_latitude">Geo latitude:</string>
     <string name="comment_title">Title:</string>
+
+    <string name="user_icon_description">Image represents user icon</string>
+    <string name="comment_icon_description">Image represents comment icon</string>
+    <string name="email_icon_description">Image represents email icon</string>
+    <string name="website_icon_description">Image represents website icon</string>
+    <string name="address_icon_description">Image represents website icon</string>
+    <string name="user_image_description">Images of user albums</string>
+
     <string name="whoops">Whoops</string>
     <string name="slow_internet">Slow or no internet connection.\nPlease check your internet settings</string>
     <string name="pull_down_to_refresh">Pull down to refresh</string>

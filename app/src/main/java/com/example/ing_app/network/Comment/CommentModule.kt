@@ -18,7 +18,7 @@ object CommentModule {
         viewModel {(postId: Int) -> CommentViewModel(postId, commentRepository = get()) }
     }
 
-    private fun provideApiService(api: CommentApi): CommentService{
+    private fun provideApiService(api: CommentApi): CommentService {
         return api.getApiService()
     }
 }

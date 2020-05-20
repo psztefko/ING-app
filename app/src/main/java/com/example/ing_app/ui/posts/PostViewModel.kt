@@ -51,6 +51,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         }
     }
 
+    // TODO: Change this to work better pagination and not assert null
     private fun transformPost(domainPost: Result<List<DomainPost>>) {
 
         val uiPostList: MutableList<UiPost> = mutableListOf()
@@ -85,10 +86,12 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                     )
                     Timber.d("Postdata = $postData")
                     uiPostList.add(postData)
+
                 }else{
                     loadingVisibility.value = View.GONE
                     postsVisibility.value = View.GONE
                     connectionError.value = View.VISIBLE
+                    onResultError()
                 }
                 updatePosts(uiPostList.toList())
             }
@@ -103,6 +106,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun isResultSuccess(resultType: ResultType): Boolean {
         return resultType == ResultType.SUCCESS
+    }
+
+    private fun onResultError() {
+        _isErrorLiveData.postValue(true)
     }
 
     fun onPostUserClicked(id: Int) {

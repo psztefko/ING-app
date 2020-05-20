@@ -9,14 +9,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.ing_app.databinding.FragmentCommentsBinding
 import com.example.ing_app.ui.user.UserFragmentArgs
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import kotlin.properties.Delegates
 
 class CommentFragment : Fragment() {
     var args by Delegates.notNull<Int>()
-    private val viewModel: CommentViewModel by sharedViewModel {parametersOf(args)}
+    private val viewModel: CommentViewModel by viewModel {parametersOf(args)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
