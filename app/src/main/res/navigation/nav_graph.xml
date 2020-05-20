@@ -18,9 +18,6 @@
         <action
             android:id="@+id/posts_to_comments"
             app:destination="@id/fragment_comment" />
-        <action
-            android:id="@+id/action_fragment_post_self"
-            app:destination="@id/fragment_post" />
     </fragment>
 
     <fragment

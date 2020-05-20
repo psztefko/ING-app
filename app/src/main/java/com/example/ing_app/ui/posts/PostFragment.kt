@@ -4,23 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.ing_app.R
-import com.example.ing_app.R.id.fragment_post
 import com.example.ing_app.databinding.FragmentPostBinding
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import kotlinx.android.synthetic.main.fragment_post.*
-import kotlinx.android.synthetic.main.fragment_post.view.*
-import kotlinx.android.synthetic.main.fragment_post.view.swipeRefreshLayout
-import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
@@ -65,7 +54,6 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 viewModel.displayCommentsComplete()
             }
         })
-
         return binding.root
     }
 
@@ -77,23 +65,8 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        val viewGroup: ViewGroup? = view?.findViewById(R.id.fragment_post)
-        viewGroup?.invalidate()
-
-        //swipeRefreshLayout.isRefreshing = false
-    }
-
-    fun RefreshFragment(){
-
-        //getFragmentManager()?.beginTransaction()?.detach(this)?.attach(this)?.commit();
-/*        Timber.d("onRefresh")
-        findNavController().navigate(
-            fragment_post,
-            arguments,
-            NavOptions.Builder()
-                .setPopUpTo(fragment_post, true)
-                .build()
-        )*/
+        viewModel.getPosts()
+        swipeRefreshLayout.isRefreshing = false
     }
 }
 

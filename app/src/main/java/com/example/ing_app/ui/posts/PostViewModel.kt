@@ -36,8 +36,14 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         getPosts()
     }
 
-    private fun getPosts() {
+    //changed to public from private to access from PostFragment
+    fun getPosts() {
         viewModelScope.launch {
+
+            //setting visibility to gone after screen refresh
+            loadingVisibility.value = View.GONE
+            connectionError.value = View.GONE
+
             Timber.d("getPosts")
             val apiResult = postRepository.getPosts()
             transformPost(apiResult)
