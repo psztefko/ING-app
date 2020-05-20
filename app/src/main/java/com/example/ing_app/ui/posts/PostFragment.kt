@@ -24,8 +24,7 @@ import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
 
-
-class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
+class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private val viewModel: PostViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -74,15 +73,19 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
         swipeRefreshLayout.setOnRefreshListener() {
             Timber.d("onRefreshListener")
             onRefresh()
-            swipeRefreshLayout.isRefreshing = false
         }
     }
 
     override fun onRefresh() {
-        RefreshFragment()
+        val viewGroup: ViewGroup? = view?.findViewById(R.id.fragment_post)
+        viewGroup?.invalidate()
+
+        //swipeRefreshLayout.isRefreshing = false
     }
 
     fun RefreshFragment(){
+
+        //getFragmentManager()?.beginTransaction()?.detach(this)?.attach(this)?.commit();
 /*        Timber.d("onRefresh")
         findNavController().navigate(
             fragment_post,
@@ -93,3 +96,4 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
         )*/
     }
 }
+

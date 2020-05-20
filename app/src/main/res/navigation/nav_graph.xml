@@ -19,8 +19,8 @@
             android:id="@+id/posts_to_comments"
             app:destination="@id/fragment_comment" />
         <action
-            android:id="@+id/post_to_connection_error"
-            app:destination="@id/fragment_connection_error" />
+            android:id="@+id/action_fragment_post_self"
+            app:destination="@id/fragment_post" />
     </fragment>
 
     <fragment
@@ -83,10 +83,5 @@
         android:label="fragment_images_fullsize"
         tools:layout="@layout/fragment_images_fullsize">
     </fragment>
-    <fragment
-        android:id="@+id/fragment_connection_error"
-        android:name="com.example.ing_app.common.fragment_connection_error"
-        android:label="fragment_connection_error"
-        tools:layout="@layout/fragment_connection_error" />
 
 </navigation>
