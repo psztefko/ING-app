@@ -99,7 +99,7 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{() -> commentClickListener.onCommentClick(post)}"
-            android:text="<@{Integer.toString(post.commentsAmount)}"
+            android:text="@{Integer.toString(post.commentsAmount)}"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/commentIcon"
             app:layout_constraintEnd_toEndOf="parent"

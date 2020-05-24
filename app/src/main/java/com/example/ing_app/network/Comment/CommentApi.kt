@@ -1,11 +1,14 @@
 package com.example.ing_app.network.Comment
 
 import android.content.Context
+import com.example.ing_app.R
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 class CommentApi (private val context: Context){
     private val BASE_URL = "https://jsonplaceholder.typicode.com"
@@ -16,12 +19,19 @@ class CommentApi (private val context: Context){
         .add(KotlinJsonAdapterFactory())
         .build()
 
+    // Creating own timeout limits
+    private var okBuilder = OkHttpClient.Builder()
+        .readTimeout(R.integer.read_timeout.toLong(), TimeUnit.MILLISECONDS)
+        .connectTimeout(R.integer.connect_timeout.toLong(), TimeUnit.MILLISECONDS)
+        .build()
+
     // Use the Retrofit builder to build a retrofit object using a Moshi converter
     // with our Moshi object.
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
+        .client(okBuilder)
         .build()
 
     fun getApiService(): CommentService {

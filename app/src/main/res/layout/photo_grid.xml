@@ -12,10 +12,11 @@
     <ImageView
         android:id="@+id/user_image"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="150dp"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:padding="2dp"
+        android:contentDescription="@string/user_image_description"
         app:imageUrl="@{photo.thumbnailUrl}"
         tools:src="@tools:sample/backgrounds/scenic" />
 </layout>

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ing_app.databinding.PostRowBinding
 
-// Two listeners (propably not the best idea but android docs are literally the worst)
+// Two listeners (probably not the best idea but android docs are literally the worst)
 class PostAdapter(private val userClickListener: UserClickListener, private val commentClickListener: CommentClickListener) :
     ListAdapter<Post, PostAdapter.ViewHolder>(PostDiffCallback()) {
 

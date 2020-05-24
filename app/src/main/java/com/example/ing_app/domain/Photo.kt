@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 
 data class Photo (
     val albumId: Int,
-    val photoId: Int,
+    val id: Int,
     val title: String,
     val url: String,
-    @Json(name = "img_src") val thumbnailUrl: String
+    val thumbnailUrl: String
 )

@@ -12,12 +12,13 @@ import com.example.ing_app.domain.Album
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ImageViewModel (private val photoKey: Int = 0,
-    private val imageRepository: ImageRepository): ViewModel(){
+class ImageViewModel (private val userKey: Int = 0,
+                      private val imageRepository: ImageRepository): ViewModel(){
 
-    private val _albums: MutableLiveData<List<Album>> = MutableLiveData()
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    private var _photosList = mutableListOf<Photo>()
+    val photosList: List<Photo>
+        get() = _photosList
+
 
     private val _photos: MutableLiveData<List<Photo>> = MutableLiveData()
     val photos: LiveData<List<Photo>>
@@ -31,13 +32,20 @@ class ImageViewModel (private val photoKey: Int = 0,
     val navigateToFullImage: LiveData<String>
         get() = _navigateToFullImage
 
+    private val _navigateToUser = MutableLiveData<Boolean?>()
+    val navigateToUser: LiveData<Boolean?>
+        get() = _navigateToUser
+
     init {
         getAlbums()
     }
 
+    // We can also take all albums and filter it but it is fine that way
+
     fun getAlbums(){
         viewModelScope.launch {
-            val apiResult = imageRepository.getAlbumsFromUser(photoKey)
+            Timber.d("getAlbums userKey: $userKey")
+            val apiResult = imageRepository.getAlbumsFromUser(userKey)
             Timber.d("getAlbums ${apiResult}")
             getPhotos(apiResult)
         }
@@ -47,7 +55,7 @@ class ImageViewModel (private val photoKey: Int = 0,
         viewModelScope.launch {
             if (isResultSuccess(result.resultType)) {
                 result.data?.forEach {
-                    val apiResult = imageRepository.getPhotosFromAlbum(it.albumId)
+                    val apiResult = imageRepository.getPhotosFromAlbum(it.id)
                     Timber.d("getPhotos ${apiResult}")
                     updatePhotos(apiResult)
                 }
@@ -59,7 +67,10 @@ class ImageViewModel (private val photoKey: Int = 0,
 
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
-            _photos.postValue(result.data)
+            // This probably is slower than previous solution but shows all photos
+            result.data?.forEach { photo -> _photosList.add(photo) }
+            Timber.d("last element of photosList: ${photosList.last()}")
+            _photos.postValue(photosList)
         } else {
             onResultError()
         }
@@ -67,6 +78,14 @@ class ImageViewModel (private val photoKey: Int = 0,
 
     fun onImageFullImageClicked(photoUrl: String) {
         _navigateToFullImage.value = photoUrl
+    }
+
+    fun doneNavigating() {
+        _navigateToUser.value = null
+    }
+
+    fun onClose() {
+        _navigateToUser.value = true
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {

@@ -12,8 +12,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Roadmap](#roadmap)
-  * [6 Stages of Fixing code](#6-Stages-of-Fixing-code)
-* [Questions](#questions)
 * [Adictional Info](#additional-info)
 
 <!-- ABOUT THE PROJECT -->
@@ -34,6 +32,8 @@ This section provide information about frameworks and technologies that our proj
 * [Moshi](https://github.com/square/moshi)
 * [Koin](https://insert-koin.io/)
 * [Timber](https://github.com/JakeWharton/timber)
+* [Material Icons](https://material.io/resources/icons/?style=baseline)
+* [Picasso](https://square.github.io/picasso/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -60,23 +60,10 @@ git clone https://github.com/psztefko/ING-app.git
 
 <!-- ROADMAP -->
 ## Roadmap
-- [x] Basic networking
-- [x] Basic DI
-- [x] Basic Databinding
-- [x] Basic Structure of project
-- [x] RecyclerView Adapter
-- [x] Showing post in RecyclerView
 - [ ] Pagination for post
-- [x] Showing user info
-- [x] Showing Comments from user post
-- [ ] Showing Photos
-- [ ] Navigation Intent
 - [ ] Tests
-
-
-## Questions
-1. How to make di with safeargs and coin? Current approach is using parameters and Delegates, but it is not working properly is there any way to fix bug [CommentFragment], [PostFragment]
-
+- [ ] Implementing cache
+- [ ] Quality of life improvments
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
