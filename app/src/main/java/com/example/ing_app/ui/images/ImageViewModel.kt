@@ -15,9 +15,10 @@ import timber.log.Timber
 class ImageViewModel (private val userKey: Int = 0,
                       private val imageRepository: ImageRepository): ViewModel(){
 
-    private val _albums: MutableLiveData<List<Album>> = MutableLiveData()
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    private var _photosList = mutableListOf<Photo>()
+    val photosList: List<Photo>
+        get() = _photosList
+
 
     private val _photos: MutableLiveData<List<Photo>> = MutableLiveData()
     val photos: LiveData<List<Photo>>
@@ -38,6 +39,8 @@ class ImageViewModel (private val userKey: Int = 0,
     init {
         getAlbums()
     }
+
+    // We can also take all albums and filter it but it is fine that way
 
     fun getAlbums(){
         viewModelScope.launch {
@@ -64,7 +67,10 @@ class ImageViewModel (private val userKey: Int = 0,
 
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
-            _photos.postValue(result.data)
+            // This probably is slower than previous solution but shows all photos
+            result.data?.forEach { photo -> _photosList.add(photo) }
+            Timber.d("last element of photosList: ${photosList.last()}")
+            _photos.postValue(photosList)
         } else {
             onResultError()
         }

@@ -1,12 +1,12 @@
-package com.example.ing_app.database
+/*package com.example.ing_app.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-/*@Database(entities = [DatabasePost::class], version = 1)
-abstract class PostsDatabase : RoomDatabase() {
+@Database(entities = [DatabasePost::class], version = 1, exportSchema = false)
+abstract class PostsDatabase() : RoomDatabase() {
     abstract val postsDao: PostsDao
 }
 

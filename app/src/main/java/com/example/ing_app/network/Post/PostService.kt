@@ -18,4 +18,8 @@ interface PostService {
     fun getUser(@Path("userId") userId : Int): Deferred<User>
     @GET("/comments")
     fun getCommentsFromPost(@Query("postId") postId: Int): Deferred<List<Comment>>
+    @GET("/users")
+    fun getUsers(): Deferred<List<User>>
+    @GET("/comments")
+    fun getComments(): Deferred<List<Comment>>
 }

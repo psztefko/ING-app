@@ -1,10 +1,10 @@
-package com.example.ing_app.database
+/*package com.example.ing_app.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.ing_app.ui.posts.Post
 
-/*@Entity
+@Entity
 data class DatabasePost (
     @PrimaryKey
     val id: Int,
