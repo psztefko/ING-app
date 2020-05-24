@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.ResultType
-import com.example.ing_app.domain.Post as DomainPost
+import com.example.ing_app.domain.Comment
+import com.example.ing_app.domain.User
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
 import kotlinx.coroutines.launch
@@ -15,6 +16,10 @@ import timber.log.Timber
 
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
+
+    private val _postsList = mutableListOf<UiPost>()
+    val postsList: List<UiPost>
+        get() = _postsList
   
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
@@ -41,40 +46,45 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private fun getPosts() {
         viewModelScope.launch {
             Timber.d("getPosts")
-            val apiResult = postRepository.getPosts()
-            transformPost(apiResult)
+            val apiResultPosts = postRepository.getPosts()
+            Timber.d("getComments")
+            val apiResultComments = postRepository.getComments()
+            Timber.d("getUsers")
+            val apiResultUsers = postRepository.getUsers()
+            transformPost(apiResultPosts, apiResultComments, apiResultUsers)
         }
     }
 
-    // TODO: Change this to work better pagination and not assert null
-    private fun transformPost(domainPost: Result<List<DomainPost>>) {
-        val uiPostList: MutableList<UiPost> = mutableListOf()
+    private fun transformPost(
+        domainPost: Result<List<com.example.ing_app.domain.Post>>,
+        commentResult: Result<List<Comment>>,
+        userResult: Result<List<User>>
+    ) {
         loadingVisibility.value = View.VISIBLE
         viewModelScope.launch {
-            // Better way but still can do better
-            var temporaryUserId = domainPost.data!![0].userId
-            var userResult = postRepository.getUserFromPost(temporaryUserId)
-            domainPost.data.forEach { post ->
-                val commentResult = postRepository.getCommentsFromPost(post.id)
-                if (post.userId != temporaryUserId) {
-                    temporaryUserId = post.userId
-                    userResult = postRepository.getUserFromPost(temporaryUserId)
-                }
-                if(isResultSuccess(userResult.resultType) && isResultSuccess(commentResult.resultType)) {
+            if(isResultSuccess(domainPost.resultType) &&
+               isResultSuccess(userResult.resultType) &&
+               isResultSuccess(commentResult.resultType)) {
+                domainPost.data!!.forEach { post ->
+                    val userName = userResult.data!!.first { it.id == post.userId }
+                    val commentsAmount = commentResult.data!!.filter { it.postId == post.id }
                     val postData = UiPost(
                         id = post.id,
                         userId = post.userId,
-                        userName = userResult.data!!.username,
+                        userName = userName.username,
                         title = post.title,
                         body = post.body,
-                        commentsAmount = commentResult.data!!.size
+                        commentsAmount = commentsAmount.size
                     )
                     Timber.d("Postdata = $postData")
-                    uiPostList.add(postData)
-                } else{
-                    onResultError()
+                    _postsList.add(postData)
+                    if(postsList.size != 0 && postsList.size % 10 == 0) {
+                        updatePosts(postsList)
+                    }
                 }
-                updatePosts(uiPostList.toList())
+            }
+            else{
+                onResultError()
             }
         }
     }

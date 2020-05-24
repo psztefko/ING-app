@@ -1,4 +1,4 @@
-package com.example.ing_app.database
+/*package com.example.ing_app.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -13,4 +13,4 @@ interface PostsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg posts: DatabasePost)
-}
+}*/
