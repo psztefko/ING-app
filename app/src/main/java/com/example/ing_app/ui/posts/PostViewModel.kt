@@ -69,9 +69,9 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         commentResult: Result<List<Comment>>,
         userResult: Result<List<User>>
     ) {
-        loadingVisibility.value = View.VISIBLE
+/*        loadingVisibility.value = View.VISIBLE
         postsVisibility.value = View.GONE
-        connectionError.value = View.GONE
+        connectionError.value = View.GONE*/
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
