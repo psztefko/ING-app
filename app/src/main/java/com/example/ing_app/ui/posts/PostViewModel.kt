@@ -15,7 +15,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import com.example.ing_app.domain.Post as DomainPost
-import com.example.ing_app.ui.posts.Post as UiPost
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
@@ -51,7 +50,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     fun getPosts() {
         viewModelScope.launch {
             //setting visibility to gone after screen refresh
-            loadingVisibility.value = View.GONE
+            loadingVisibility.value = View.VISIBLE
+            postsVisibility.value = View.GONE
             connectionError.value = View.GONE
 
             Timber.d("getPosts")
@@ -70,6 +70,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         userResult: Result<List<User>>
     ) {
         loadingVisibility.value = View.VISIBLE
+        postsVisibility.value = View.GONE
+        connectionError.value = View.GONE
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
@@ -99,6 +101,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun updatePosts(result: List<UiPost>) {
         loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        postsVisibility.value = View.VISIBLE
         _posts.postValue(result)
     }
 

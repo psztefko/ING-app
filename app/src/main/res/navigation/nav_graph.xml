@@ -14,10 +14,10 @@
         <action
             android:id="@+id/posts_to_username"
             app:destination="@id/fragment_user"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right">
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left">
         </action>
         <action
             android:id="@+id/posts_to_comments"
@@ -41,10 +41,10 @@
         <action
             android:id="@+id/user_to_images"
             app:destination="@id/fragment_images"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right" />
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/user_to_posts"
             app:destination="@id/fragment_post"
