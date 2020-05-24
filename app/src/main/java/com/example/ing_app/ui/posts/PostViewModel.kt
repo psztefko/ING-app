@@ -28,6 +28,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
 
+    private val _isErrorLiveData = MutableLiveData<Boolean>()
+    val navigateToErrorScreen: MutableLiveData<Boolean>
+        get() = _isErrorLiveData
+
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val connectionError: MutableLiveData<Int> = MutableLiveData()
     val postsVisibility: MutableLiveData<Int> = MutableLiveData()
@@ -39,7 +43,6 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     //changed to public from private to access from PostFragment
     fun getPosts() {
         viewModelScope.launch {
-
             //setting visibility to gone after screen refresh
             loadingVisibility.value = View.GONE
             connectionError.value = View.GONE
@@ -59,15 +62,6 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         viewModelScope.launch {
             // Better way but still can do better
             var temporaryUserId = domainPost.data?.get(0)?.userId
-            if(temporaryUserId == null){
-                loadingVisibility.value = View.GONE
-                postsVisibility.value = View.GONE
-                connectionError.value = View.VISIBLE
-
-                while (true){
-                    delay(500)
-                }
-            }
             var userResult = temporaryUserId?.let { postRepository.getUserFromPost(it) }
             domainPost.data?.forEach { post ->
                 val commentResult = postRepository.getCommentsFromPost(post.id)
@@ -88,9 +82,6 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                     uiPostList.add(postData)
 
                 }else{
-                    loadingVisibility.value = View.GONE
-                    postsVisibility.value = View.GONE
-                    connectionError.value = View.VISIBLE
                     onResultError()
                 }
                 updatePosts(uiPostList.toList())
@@ -109,7 +100,11 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     private fun onResultError() {
+        Timber.d("onPostsError")
         _isErrorLiveData.postValue(true)
+        loadingVisibility.value = View.GONE
+        postsVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
     }
 
     fun onPostUserClicked(id: Int) {
@@ -128,4 +123,3 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         _navigateToSelectedComments.value = null
     }
 }
-
