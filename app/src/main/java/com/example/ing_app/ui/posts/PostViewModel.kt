@@ -71,6 +71,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     ) {
         loadingVisibility.value = View.VISIBLE
         postsVisibility.value = View.GONE
+        connectionError.value = View.GONE
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
@@ -100,6 +101,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private fun updatePosts(result: List<UiPost>) {
         loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
         postsVisibility.value = View.VISIBLE
         _posts.postValue(result)
     }
