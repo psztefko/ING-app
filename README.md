@@ -60,7 +60,6 @@ git clone https://github.com/psztefko/ING-app.git
 
 <!-- ROADMAP -->
 ## Roadmap
-- [ ] Pagination for post
 - [ ] Tests
 - [ ] Implementing cache
 - [ ] Quality of life improvments
