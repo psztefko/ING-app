@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ing_app.databinding.FragmentCommentsBinding
 import com.example.ing_app.ui.user.UserFragmentArgs
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.fragment_post.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import kotlin.properties.Delegates
 
-class CommentFragment : Fragment() {
+class CommentFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     var args by Delegates.notNull<Int>()
-    private val viewModel: CommentViewModel by viewModel {parametersOf(args)}
+    private val viewModel: CommentViewModel by sharedViewModel {parametersOf(args)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +48,23 @@ class CommentFragment : Fragment() {
             if (it == true) {
                 this.findNavController().navigate(
                     CommentFragmentDirections.commentsToPosts())
-                    viewModel.doneNavigating()
+                viewModel.doneNavigating()
             }
         })
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        swipeRefreshLayout.setOnRefreshListener() {
+            Timber.d("onRefreshListener")
+            onRefresh()
+        }
+    }
+
+    override fun onRefresh() {
+        viewModel.getComments()
+        swipeRefreshLayout.isRefreshing = false
+    }
+
 }

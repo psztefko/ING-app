@@ -1,5 +1,6 @@
 package com.example.ing_app.ui.images
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,6 +37,9 @@ class ImageViewModel (private val userKey: Int = 0,
     val navigateToUser: LiveData<Boolean?>
         get() = _navigateToUser
 
+    val connectionError: MutableLiveData<Int> = MutableLiveData()
+    val imagesVisibility: MutableLiveData<Int> = MutableLiveData()
+
     init {
         getAlbums()
     }
@@ -44,6 +48,8 @@ class ImageViewModel (private val userKey: Int = 0,
 
     fun getAlbums(){
         viewModelScope.launch {
+            imagesVisibility.value = View.GONE
+            connectionError.value = View.GONE
             Timber.d("getAlbums userKey: $userKey")
             val apiResult = imageRepository.getAlbumsFromUser(userKey)
             Timber.d("getAlbums ${apiResult}")
@@ -67,6 +73,8 @@ class ImageViewModel (private val userKey: Int = 0,
 
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
+            connectionError.value = View.GONE
+            imagesVisibility.value = View.VISIBLE
             // This probably is slower than previous solution but shows all photos
             result.data?.forEach { photo -> _photosList.add(photo) }
             Timber.d("last element of photosList: ${photosList.last()}")
@@ -92,5 +100,9 @@ class ImageViewModel (private val userKey: Int = 0,
         return resultType == ResultType.SUCCESS
     }
 
-    private fun onResultError() = _isErrorLiveData.postValue(true)
+    private fun onResultError() {
+        connectionError.value = View.VISIBLE
+        imagesVisibility.value = View.GONE
+        _isErrorLiveData.postValue(true)
+    }
 }
