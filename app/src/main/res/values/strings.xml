@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ING-app</string>
+    <string name="app_name">Project ING</string>
     <string name="Photos">Gallery</string>
 
     <string name="title_username">Username:</string>
@@ -18,7 +18,8 @@
     <string name="user_image_description">Images of user albums</string>
 
     <string name="whoops">Whoops</string>
-    <string name="slow_or_no_internet_connection_nplease_check_your_internet_settings">Slow or no internet connection.\nPlease check your internet settings</string>
+    <string name="slow_internet">Slow or no internet connection.\nPlease check your internet settings</string>
     <string name="pull_down_to_refresh">Pull down to refresh</string>
     <string name="error_image">error image</string>
+
 </resources>

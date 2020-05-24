@@ -1,7 +1,7 @@
 package com.example.ing_app.ui.posts
 
-import androidx.lifecycle.LiveData
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,16 +11,18 @@ import com.example.ing_app.domain.Comment
 import com.example.ing_app.domain.User
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-
+import com.example.ing_app.domain.Post as DomainPost
+import com.example.ing_app.ui.posts.Post as UiPost
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     private val _postsList = mutableListOf<UiPost>()
     val postsList: List<UiPost>
         get() = _postsList
-  
+
     private val _posts: MutableLiveData<List<UiPost>> = MutableLiveData()
     val posts: LiveData<List<UiPost>>
         get() = _posts
@@ -33,18 +35,25 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val navigateToSelectedComments: LiveData<Int>
         get() = _navigateToSelectedComments
 
-    private val _isErrorLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    val isErrorLiveData: LiveData<Boolean>
+    private val _isErrorLiveData = MutableLiveData<Boolean>()
+    val navigateToErrorScreen: MutableLiveData<Boolean>
         get() = _isErrorLiveData
-  
+
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val connectionError: MutableLiveData<Int> = MutableLiveData()
+    val postsVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getPosts()
     }
 
-    private fun getPosts() {
+    //changed to public from private to access from PostFragment
+    fun getPosts() {
         viewModelScope.launch {
+            //setting visibility to gone after screen refresh
+            loadingVisibility.value = View.GONE
+            connectionError.value = View.GONE
+
             Timber.d("getPosts")
             val apiResultPosts = postRepository.getPosts()
             Timber.d("getComments")
@@ -65,7 +74,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
                isResultSuccess(commentResult.resultType)) {
-                domainPost.data!!.forEach { post ->
+                  domainPost.data!!.forEach { post ->
                     val userName = userResult.data!!.first { it.id == post.userId }
                     val commentsAmount = commentResult.data!!.filter { it.postId == post.id }
                     val postData = UiPost(
@@ -74,20 +83,19 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
                         userName = userName.username,
                         title = post.title,
                         body = post.body,
-                        commentsAmount = commentsAmount.size
-                    )
+                        commentsAmount = commentsAmount.size)
                     Timber.d("Postdata = $postData")
                     _postsList.add(postData)
                     if(postsList.size != 0 && postsList.size % 10 == 0) {
                         updatePosts(postsList)
                     }
-                }
-            }
-            else{
-                onResultError()
+                 }
+            } else {
+               onResultError()
             }
         }
     }
+
 
     private fun updatePosts(result: List<UiPost>) {
         loadingVisibility.value = View.GONE
@@ -99,8 +107,11 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     private fun onResultError() {
+        Timber.d("onPostsError")
         _isErrorLiveData.postValue(true)
-
+        loadingVisibility.value = View.GONE
+        postsVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
     }
 
     fun onPostUserClicked(id: Int) {
