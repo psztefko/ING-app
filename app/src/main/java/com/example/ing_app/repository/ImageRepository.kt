@@ -5,7 +5,7 @@ import com.example.ing_app.common.exception.CancelledFetchDataException
 import com.example.ing_app.common.exception.NetworkException
 import com.example.ing_app.domain.Photo
 import com.example.ing_app.domain.Album
-import com.example.ing_app.network.Image.ImageService
+import com.example.ing_app.network.image.ImageService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

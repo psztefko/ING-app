@@ -11,14 +11,12 @@ import com.example.ing_app.domain.Comment
 import com.example.ing_app.domain.User
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import com.example.ing_app.domain.Post as DomainPost
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
-    private val _postsList = mutableListOf<UiPost>()
+    private var _postsList = mutableListOf<UiPost>()
     val postsList: List<UiPost>
         get() = _postsList
 
@@ -69,9 +67,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         commentResult: Result<List<Comment>>,
         userResult: Result<List<User>>
     ) {
-/*        loadingVisibility.value = View.VISIBLE
-        postsVisibility.value = View.GONE
-        connectionError.value = View.GONE*/
+        _postsList = mutableListOf<UiPost>()
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&

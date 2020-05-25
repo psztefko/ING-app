@@ -4,7 +4,7 @@ import com.example.ing_app.common.exception.CancelledFetchDataException
 import com.example.ing_app.common.exception.NetworkException
 import com.example.ing_app.common.Result
 import com.example.ing_app.domain.Comment
-import com.example.ing_app.network.Comment.CommentService
+import com.example.ing_app.network.comment.CommentService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber

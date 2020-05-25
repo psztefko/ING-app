@@ -1,10 +1,10 @@
 package com.example.ing_app
 
 import android.app.Application
-import com.example.ing_app.network.Comment.CommentModule
-import com.example.ing_app.network.Image.ImageModule
-import com.example.ing_app.network.Post.PostModule
-import com.example.ing_app.network.User.UserModule
+import com.example.ing_app.modules.CommentModule
+import com.example.ing_app.modules.ImageModule
+import com.example.ing_app.modules.PostModule
+import com.example.ing_app.modules.UserModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

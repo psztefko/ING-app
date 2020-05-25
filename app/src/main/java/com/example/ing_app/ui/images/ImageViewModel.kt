@@ -47,6 +47,7 @@ class ImageViewModel (private val userKey: Int = 0,
     // We can also take all albums and filter it but it is fine that way
 
     fun getAlbums(){
+        _photosList = mutableListOf<Photo>()
         viewModelScope.launch {
             imagesVisibility.value = View.GONE
             connectionError.value = View.GONE
@@ -75,7 +76,6 @@ class ImageViewModel (private val userKey: Int = 0,
         if (isResultSuccess(result.resultType)) {
             connectionError.value = View.GONE
             imagesVisibility.value = View.VISIBLE
-            // This probably is slower than previous solution but shows all photos
             result.data?.forEach { photo -> _photosList.add(photo) }
             Timber.d("last element of photosList: ${photosList.last()}")
             _photos.postValue(photosList)

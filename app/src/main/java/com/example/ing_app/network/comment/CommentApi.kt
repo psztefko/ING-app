@@ -1,4 +1,4 @@
-package com.example.ing_app.network.User
+package com.example.ing_app.network.comment
 
 import android.content.Context
 import com.example.ing_app.R
@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-class UserApi(private val context: Context){
+class CommentApi (private val context: Context){
     private val BASE_URL = "https://jsonplaceholder.typicode.com"
 
     // Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
@@ -31,10 +31,10 @@ class UserApi(private val context: Context){
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .baseUrl(BASE_URL)
+        .client(okBuilder)
         .build()
 
-    fun getApiService(): UserService {
-        return retrofit.create(UserService::class.java)
+    fun getApiService(): CommentService {
+        return retrofit.create(CommentService::class.java)
     }
-
 }
