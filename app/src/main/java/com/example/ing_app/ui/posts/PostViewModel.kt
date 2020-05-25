@@ -16,7 +16,7 @@ import timber.log.Timber
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
-    private val _postsList = mutableListOf<UiPost>()
+    private var _postsList = mutableListOf<UiPost>()
     val postsList: List<UiPost>
         get() = _postsList
 
@@ -67,9 +67,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         commentResult: Result<List<Comment>>,
         userResult: Result<List<User>>
     ) {
-/*        loadingVisibility.value = View.VISIBLE
-        postsVisibility.value = View.GONE
-        connectionError.value = View.GONE*/
+        _postsList = mutableListOf<UiPost>()
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
