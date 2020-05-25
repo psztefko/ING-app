@@ -1,4 +1,4 @@
-/*package com.example.ing_app.database
+package com.example.ing_app.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -26,4 +26,4 @@ fun List<DatabasePost>.asDomainModel(): List<Post> {
             commentsAmount = it.commentsAmount
         )
     }
-}*/
+}

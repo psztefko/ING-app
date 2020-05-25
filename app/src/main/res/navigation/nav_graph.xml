@@ -82,10 +82,10 @@
             android:defaultValue="1"
             />
         <action
-            android:id="@+id/images_to_user"
-            app:destination="@id/fragment_user"
+            android:id="@+id/images_to_posts"
+            app:destination="@id/fragment_post"
             app:launchSingleTop="false"
-            app:popUpTo="@+id/fragment_user"
+            app:popUpTo="@+id/fragment_post"
             app:popUpToInclusive="true" />
     </fragment>
 

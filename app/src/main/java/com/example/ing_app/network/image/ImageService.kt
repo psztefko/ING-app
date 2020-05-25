@@ -1,4 +1,4 @@
-package com.example.ing_app.network.Image
+package com.example.ing_app.network.image
 
 import com.example.ing_app.domain.Album
 import com.example.ing_app.domain.Photo

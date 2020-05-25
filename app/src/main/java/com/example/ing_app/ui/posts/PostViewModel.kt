@@ -11,10 +11,8 @@ import com.example.ing_app.domain.Comment
 import com.example.ing_app.domain.User
 import com.example.ing_app.ui.posts.Post as UiPost
 import com.example.ing_app.repository.PostRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import com.example.ing_app.domain.Post as DomainPost
 
 class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 

@@ -1,5 +1,7 @@
-package com.example.ing_app.network.Image
+package com.example.ing_app.modules
 
+import com.example.ing_app.network.image.ImageApi
+import com.example.ing_app.network.image.ImageService
 import com.example.ing_app.repository.ImageRepository
 import com.example.ing_app.ui.images.ImageViewModel
 import org.koin.android.ext.koin.androidContext

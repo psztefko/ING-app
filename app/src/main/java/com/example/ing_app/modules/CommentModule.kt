@@ -1,5 +1,7 @@
-package com.example.ing_app.network.Comment
+package com.example.ing_app.modules
 
+import com.example.ing_app.network.comment.CommentApi
+import com.example.ing_app.network.comment.CommentService
 import com.example.ing_app.repository.CommentRepository
 import com.example.ing_app.ui.comments.CommentViewModel
 import org.koin.android.ext.koin.androidContext

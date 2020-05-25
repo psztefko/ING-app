@@ -39,7 +39,7 @@ class ImageFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.navigateToUser.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 this.findNavController().navigate(
-                    ImageFragmentDirections.imagesToUser())
+                    ImageFragmentDirections.imagesToPosts())
                 viewModel.doneNavigating()
             }
         })

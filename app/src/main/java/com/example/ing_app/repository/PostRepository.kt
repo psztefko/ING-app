@@ -7,12 +7,14 @@ import com.example.ing_app.common.exception.NetworkException
 import com.example.ing_app.domain.Comment
 import com.example.ing_app.domain.Post
 import com.example.ing_app.domain.User
-import com.example.ing_app.network.Post.PostService
+import com.example.ing_app.network.comment.CommentService
+import com.example.ing_app.network.post.PostService
+import com.example.ing_app.network.user.UserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class PostRepository (private val postService: PostService) {
+class PostRepository (private val postService: PostService, private val commentService: CommentService, private val userService: UserService) {
     suspend fun getPosts() : Result<List<Post>> {
         var result: Result<List<Post>> = Result.success(emptyList())
 
@@ -41,7 +43,7 @@ class PostRepository (private val postService: PostService) {
         var result: Result<User> = Result.success(User())
         withContext(Dispatchers.IO) {
             try {
-                val request = postService.getUser(postId)
+                val request = userService.getUser(postId)
                 val response = request.await()
                 Timber.d("onUserReceived {$request}")
 
@@ -63,7 +65,7 @@ class PostRepository (private val postService: PostService) {
         var result: Result<List<User>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
             try {
-                val request = postService.getUsers()
+                val request = userService.getUsers()
                 val response = request.await()
                 Timber.d("onUsersReceived {$request}")
 
@@ -81,33 +83,11 @@ class PostRepository (private val postService: PostService) {
         }
         return result
     }
-    suspend fun getCommentsFromPost(postId:Int): Result<List<Comment>> {
-        var result: Result<List<Comment>> = Result.success(emptyList())
-        withContext(Dispatchers.IO) {
-            try{
-                val request = postService.getCommentsFromPost(postId)
-                val response = request.await()
-                Timber.d("onCommentsFromPostReceived $request")
-
-                request.let {
-                    if (it.isCompleted) {
-                        result = Result.success(response)
-                    } else if (it.isCancelled) {
-                        result = Result.failure(CancelledFetchDataException())
-                    }
-                }
-            } catch (ex: Throwable) {
-                result = Result.failure(NetworkException())
-                Timber.d("onCommentReceived NetworkException")
-            }
-        }
-        return result
-    }
     suspend fun getComments(): Result<List<Comment>> {
         var result: Result<List<Comment>> = Result.success(emptyList())
         withContext(Dispatchers.IO) {
             try{
-                val request = postService.getComments()
+                val request = commentService.getComments()
                 val response = request.await()
                 Timber.d("onCommentsReceived $request")
 

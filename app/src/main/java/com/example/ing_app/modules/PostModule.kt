@@ -1,5 +1,7 @@
-package com.example.ing_app.network.Post
+package com.example.ing_app.modules
 
+import com.example.ing_app.network.post.PostApi
+import com.example.ing_app.network.post.PostService
 import com.example.ing_app.repository.PostRepository
 import com.example.ing_app.ui.posts.PostViewModel
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +16,7 @@ object PostModule {
                 get()
             )
         }
-        single { PostRepository(postService = get()) }
+        single { PostRepository(postService = get(), commentService = get(), userService = get()) }
         viewModel { PostViewModel(postRepository = get())}
     }
 

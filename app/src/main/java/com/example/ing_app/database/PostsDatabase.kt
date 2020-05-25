@@ -1,4 +1,4 @@
-/*package com.example.ing_app.database
+package com.example.ing_app.database
 
 import android.content.Context
 import androidx.room.Database
@@ -21,4 +21,4 @@ fun getDatabase(context: Context): PostsDatabase {
         }
     }
     return INSTANCE
-}*/
+}

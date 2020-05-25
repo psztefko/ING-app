@@ -1,5 +1,7 @@
-package com.example.ing_app.network.User
+package com.example.ing_app.modules
 
+import com.example.ing_app.network.user.UserApi
+import com.example.ing_app.network.user.UserService
 import com.example.ing_app.repository.UserRepository
 import com.example.ing_app.ui.user.UserViewModel
 import org.koin.android.ext.koin.androidContext
