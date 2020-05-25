@@ -30,6 +30,7 @@
             android:src="@drawable/ic_person_black_24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:onClick="@{() -> userClickListener.onUserClick(post)}"
             android:contentDescription="@string/user_icon_description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -86,6 +87,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
+            android:onClick="@{() -> commentClickListener.onCommentClick(post)}"
             android:contentDescription="@string/comment_icon_description"
             android:src="@drawable/ic_comment_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
