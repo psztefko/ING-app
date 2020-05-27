@@ -11,7 +11,7 @@ import org.koin.core.parameter.parametersOf
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import kotlinx.android.synthetic.main.fragment_post.*
+import kotlinx.android.synthetic.main.fragment_images.*
 import timber.log.Timber
 import kotlin.properties.Delegates
 

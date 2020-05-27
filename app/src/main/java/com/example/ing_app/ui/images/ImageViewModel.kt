@@ -46,6 +46,7 @@ class ImageViewModel (private val userKey: Int = 0,
 
     // We can also take all albums and filter it but it is fine that way
 
+    //getting images from repository
     fun getAlbums(){
         _photosList = mutableListOf<Photo>()
         viewModelScope.launch {
@@ -74,8 +75,7 @@ class ImageViewModel (private val userKey: Int = 0,
 
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
-            connectionError.value = View.GONE
-            imagesVisibility.value = View.VISIBLE
+            imagesVisible()
             result.data?.forEach { photo -> _photosList.add(photo) }
             Timber.d("last element of photosList: ${photosList.last()}")
             _photos.postValue(photosList)
@@ -101,8 +101,18 @@ class ImageViewModel (private val userKey: Int = 0,
     }
 
     private fun onResultError() {
+        errorVisible()
+        _isErrorLiveData.postValue(true)
+    }
+
+
+    fun imagesVisible(){
+        connectionError.value = View.GONE
+        imagesVisibility.value = View.VISIBLE
+    }
+
+    fun errorVisible(){
         connectionError.value = View.VISIBLE
         imagesVisibility.value = View.GONE
-        _isErrorLiveData.postValue(true)
     }
 }

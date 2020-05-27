@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ing_app.R
 import com.example.ing_app.common.Result
 import com.example.ing_app.common.ResultType
 import com.example.ing_app.domain.Comment
@@ -44,14 +45,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         getPosts()
     }
 
-    //changed to public from private to access from PostFragment
+    //getting posts from repository
     fun getPosts() {
         viewModelScope.launch {
-            //setting visibility to gone after screen refresh
-            loadingVisibility.value = View.VISIBLE
-            postsVisibility.value = View.GONE
-            connectionError.value = View.GONE
-
+            loadingVisible()
             Timber.d("getPosts")
             val apiResultPosts = postRepository.getPosts()
             Timber.d("getComments")
@@ -66,8 +63,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         domainPost: Result<List<com.example.ing_app.domain.Post>>,
         commentResult: Result<List<Comment>>,
         userResult: Result<List<User>>
-    ) {
-        _postsList = mutableListOf<UiPost>()
+    ) { _postsList = mutableListOf<UiPost>()
         viewModelScope.launch {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
@@ -96,9 +92,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
 
     private fun updatePosts(result: List<UiPost>) {
-        loadingVisibility.value = View.GONE
-        connectionError.value = View.GONE
-        postsVisibility.value = View.VISIBLE
+        postsVisible()
         _posts.postValue(result)
     }
 
@@ -109,9 +103,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     private fun onResultError() {
         Timber.d("onPostsError")
         _isErrorLiveData.postValue(true)
-        loadingVisibility.value = View.GONE
-        postsVisibility.value = View.GONE
-        connectionError.value = View.VISIBLE
+        errorVisible()
     }
 
     fun onPostUserClicked(id: Int) {
@@ -128,5 +120,23 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun displayCommentsComplete() {
         _navigateToSelectedComments.value = null
+    }
+
+    fun loadingVisible(){
+        loadingVisibility.value = View.VISIBLE
+        connectionError.value = View.GONE
+        postsVisibility.value = View.GONE
+    }
+
+    fun postsVisible(){
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        postsVisibility.value = View.VISIBLE
+    }
+
+    fun errorVisible(){
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
+        postsVisibility.value = View.GONE
     }
 }

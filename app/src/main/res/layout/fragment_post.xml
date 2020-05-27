@@ -15,6 +15,7 @@
         android:id="@+id/fragmentLayoutConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         tools:content="com.example.ing_app.ui.posts.PostFragment">
 
         <ProgressBar

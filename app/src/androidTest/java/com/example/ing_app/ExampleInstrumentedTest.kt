@@ -2,11 +2,15 @@ package com.example.ing_app
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.ing_app.common.Result
+import kotlinx.coroutines.runBlocking
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Rule
+import org.junit.runners.JUnit4
 
 /**
  * Instrumented test, which will execute on an Android device.
