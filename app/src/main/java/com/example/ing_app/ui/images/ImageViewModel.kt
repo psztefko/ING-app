@@ -39,6 +39,7 @@ class ImageViewModel (private val userKey: Int = 0,
 
     val connectionError: MutableLiveData<Int> = MutableLiveData()
     val imagesVisibility: MutableLiveData<Int> = MutableLiveData()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getAlbums()
@@ -50,8 +51,7 @@ class ImageViewModel (private val userKey: Int = 0,
     fun getAlbums(){
         _photosList = mutableListOf<Photo>()
         viewModelScope.launch {
-            imagesVisibility.value = View.GONE
-            connectionError.value = View.GONE
+            loadingVisible()
             Timber.d("getAlbums userKey: $userKey")
             val apiResult = imageRepository.getAlbumsFromUser(userKey)
             Timber.d("getAlbums ${apiResult}")
@@ -107,12 +107,20 @@ class ImageViewModel (private val userKey: Int = 0,
 
 
     fun imagesVisible(){
+        loadingVisibility.value = View.GONE
         connectionError.value = View.GONE
         imagesVisibility.value = View.VISIBLE
     }
 
     fun errorVisible(){
-        connectionError.value = View.VISIBLE
         imagesVisibility.value = View.GONE
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
+    }
+
+    fun loadingVisible(){
+        imagesVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        loadingVisibility.value = View.VISIBLE
     }
 }

@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UserFragment">
+        tools:context=".UserFragment"
+        android:background="?attr/bgColor">
 
         <ImageView
             android:id="@+id/icon_user"
@@ -34,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.username}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_user"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.email}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_email"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.website}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_website"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.address.street}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_address"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.address.city}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/street"
@@ -131,6 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:textColor="?attr/primaryTextColor"
             android:text="@{viewModel.user.address.zipcode}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/city"
@@ -147,7 +154,7 @@
             android:onClick="@{() -> userListener.onPhotosClicked(viewModel.user)}"
             android:text="@string/Photos"
             android:background="@drawable/ripple_effect"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/zipcode" />

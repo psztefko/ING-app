@@ -15,6 +15,7 @@
         android:id="@+id/fragmentLayoutConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/bgColor"
 
         tools:content="com.example.ing_app.ui.posts.PostFragment">
 
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:text="@string/whoops"
             android:textSize="24sp"
+            android:textColor="?attr/secondaryTextColor"
             android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +64,7 @@
             android:text="@string/slow_internet"
             android:textAlignment="center"
             android:textSize="15sp"
+            android:textColor="?attr/secondaryTextColor"
             android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +80,7 @@
             android:clickable="false"
             android:padding="8dp"
             android:text="@string/pull_down_to_refresh"
-            android:textColor="#000000"
+            android:textColor="?attr/primaryTextColor"
             android:visibility="@{viewModel.connectionError ?? View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
