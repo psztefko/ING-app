@@ -18,6 +18,7 @@
         android:background="?attr/bgColor"
         tools:content="com.example.ing_app.ui.posts.PostFragment">
 
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"

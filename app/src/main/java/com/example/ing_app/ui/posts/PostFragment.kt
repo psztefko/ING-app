@@ -1,14 +1,12 @@
 package com.example.ing_app.ui.posts
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.ing_app.R
 import com.example.ing_app.databinding.FragmentPostBinding
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -57,6 +55,30 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         })
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?){
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+
+        R.id.theme_icon_menu -> {
+            ContextThemeWrapper(context, R.style.LightTheme).apply { setTheme(R.style.DarkTheme) }
+
+            true
+        }
+        R.id.app_bar_switch -> {
+
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
