@@ -12,7 +12,6 @@
         <item name="primaryTextColor">@android:color/primary_text_dark</item>
         <item name="secondaryTextColor">@android:color/secondary_text_dark</item>
         <item name="bgColor">#E5121212</item>
-        <item name="actionBarColor">@color/colorPrimaryDark</item>
         <item name="iconsColor">#B2FFFFFF</item>
     </style>
 
@@ -20,7 +19,6 @@
         <item name="primaryTextColor">#121212</item>
         <item name="secondaryTextColor">@android:color/secondary_text_dark</item>
         <item name="bgColor">@android:color/background_light</item>
-        <item name="actionBarColor">@color/colorPrimary</item>
         <item name="iconsColor">#CC121212</item>
     </style>
 

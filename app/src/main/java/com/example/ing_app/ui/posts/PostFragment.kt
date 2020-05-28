@@ -74,10 +74,6 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
             true
         }
-        R.id.app_bar_switch -> {
-
-            true
-        }
         else -> super.onOptionsItemSelected(item)
     }
 

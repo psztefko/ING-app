@@ -21,4 +21,5 @@
     <string name="slow_internet">Problem z połączeniem internetowym.\nSprawdź ustawienia sieci</string>
     <string name="pull_down_to_refresh">Przeciągnij w dół aby odświeżyć</string>
     <string name="error_image">error image</string>
+    <string name="change_theme">Zmiana motywu</string>
 </resources>

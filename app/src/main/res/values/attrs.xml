@@ -3,6 +3,5 @@
     <attr name="bgColor" format="color"/>
     <attr name="primaryTextColor" format="color"/>
     <attr name="secondaryTextColor" format="color"/>
-    <attr name="actionBarColor" format="color"/>
     <attr name="iconsColor" format="color"/>
 </resources>

@@ -21,5 +21,6 @@
     <string name="slow_internet">Slow or no internet connection.\nPlease check your internet settings</string>
     <string name="pull_down_to_refresh">Pull down to refresh</string>
     <string name="error_image">error image</string>
+    <string name="change_theme">Change theme</string>
 
 </resources>
