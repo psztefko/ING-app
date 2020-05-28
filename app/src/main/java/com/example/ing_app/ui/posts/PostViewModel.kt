@@ -72,7 +72,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
             if(isResultSuccess(domainPost.resultType) &&
                isResultSuccess(userResult.resultType) &&
                isResultSuccess(commentResult.resultType)) {
-                  domainPost.data!!.forEach { post ->
+                  domainPost.data?.forEach { post ->
                     val userName = userResult.data!!.first { it.id == post.userId }
                     val commentsAmount = commentResult.data!!.filter { it.postId == post.id }
                     val postData = UiPost(

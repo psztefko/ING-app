@@ -1,18 +1,14 @@
 package com.example.ing_app.ui.posts
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ing_app.databinding.FragmentPostBinding
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import timber.log.Timber
 
 class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private val viewModel: PostViewModel by sharedViewModel()
@@ -57,13 +53,6 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             }
         })
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        swipeRefreshLayout.setOnRefreshListener() {
-            Timber.d("onRefreshListener")
-            onRefresh()
-        }
     }
 
     override fun onRefresh() {
