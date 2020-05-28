@@ -24,6 +24,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBmtgU14MibiUCY8n5k0W-8XrMvXQh5oG0" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_id"/>
     </application>
 
 </manifest>

@@ -79,6 +79,9 @@ dependencies {
     // Google Maps
     implementation "com.google.android.gms:play-services-maps:17.0.0"
 
+    // Google Ads
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+
     // Picasso for images
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
@@ -99,6 +102,8 @@ dependencies {
 
     // Test libs
     testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-core:2.+'
+    testImplementation "org.koin:koin-test:$koin_version"
     // should be test implementation but it won't work
     implementation "org.koin:koin-test:$koin_version"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
