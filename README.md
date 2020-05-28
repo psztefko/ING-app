@@ -23,7 +23,7 @@ This task may look simple, but we have already discovered that it isn’t.
 Through making this app we want to learn programming in Kotlin language starting from basic parts like learning the syntax to more complicated stuff like following the optimal architecture rules of MVVM.
 
 
-<img src="./Screenshots/app.gif" alt="Screenshot of application" width=200>
+<img src="./Screenshots/app2.gif" alt="Screenshot of application" width=200>
 
 ### Built With
 This section provide information about frameworks and technologies that our project is currently using

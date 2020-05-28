@@ -10,16 +10,7 @@ import org.koin.test.KoinTest
 
 class MyTest : KoinTest{
 
-    var listOfModules =
-        listOf(
-            PostModule.mainModule,
-            UserModule.mainModule,
-            CommentModule.mainModule,
-            ImageModule.mainModule
-        )
-
     @Test
     fun makeATestWithKoin() {
-        startKoin { modules(listOfModules)}
     }
 }
