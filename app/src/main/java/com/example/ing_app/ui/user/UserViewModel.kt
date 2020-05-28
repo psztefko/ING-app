@@ -15,9 +15,11 @@ import timber.log.Timber
 
 class UserViewModel (private val userKey: Int = 0,
                      private val userRepository: UserRepository): ViewModel(){
+
     private val _user: MutableLiveData<User> = MutableLiveData()
     val user: LiveData<User>
         get() = _user
+
     private val _isErrorLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val isErrorLiveData: LiveData<Boolean>
         get() = _isErrorLiveData
@@ -35,6 +37,7 @@ class UserViewModel (private val userKey: Int = 0,
     }
 
     private fun getUser() {
+        //nie
         viewModelScope.launch {
             val apiResult = userRepository.getUserFromPost(userKey)
             updateUser(apiResult)
@@ -67,6 +70,7 @@ class UserViewModel (private val userKey: Int = 0,
     }
 
     private fun isResultSuccess(resultType: ResultType): Boolean {
+        //tak
         return resultType == ResultType.SUCCESS
     }
 

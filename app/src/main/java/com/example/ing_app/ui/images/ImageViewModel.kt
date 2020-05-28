@@ -39,6 +39,7 @@ class ImageViewModel (private val userKey: Int = 0,
 
     val connectionError: MutableLiveData<Int> = MutableLiveData()
     val imagesVisibility: MutableLiveData<Int> = MutableLiveData()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getAlbums()
@@ -46,11 +47,11 @@ class ImageViewModel (private val userKey: Int = 0,
 
     // We can also take all albums and filter it but it is fine that way
 
+    //getting images from repository
     fun getAlbums(){
         _photosList = mutableListOf<Photo>()
         viewModelScope.launch {
-            imagesVisibility.value = View.GONE
-            connectionError.value = View.GONE
+            loadingVisible()
             Timber.d("getAlbums userKey: $userKey")
             val apiResult = imageRepository.getAlbumsFromUser(userKey)
             Timber.d("getAlbums ${apiResult}")
@@ -74,8 +75,7 @@ class ImageViewModel (private val userKey: Int = 0,
 
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
-            connectionError.value = View.GONE
-            imagesVisibility.value = View.VISIBLE
+            imagesVisible()
             result.data?.forEach { photo -> _photosList.add(photo) }
             Timber.d("last element of photosList: ${photosList.last()}")
             _photos.postValue(photosList)
@@ -101,8 +101,25 @@ class ImageViewModel (private val userKey: Int = 0,
     }
 
     private fun onResultError() {
-        connectionError.value = View.VISIBLE
-        imagesVisibility.value = View.GONE
+        errorVisible()
         _isErrorLiveData.postValue(true)
+    }
+
+    fun imagesVisible(){
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        imagesVisibility.value = View.VISIBLE
+    }
+
+    fun errorVisible(){
+        imagesVisibility.value = View.GONE
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
+    }
+
+    fun loadingVisible(){
+        imagesVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        loadingVisibility.value = View.VISIBLE
     }
 }
