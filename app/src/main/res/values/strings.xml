@@ -25,5 +25,6 @@
 
     <string name="admob_id" translatable="false">ca-app-pub-7580099129317476~8448208454</string>
     <string name="admob_banner_ad" translatable="false">ca-app-pub-7580099129317476/3742676687</string>
-
+    <!--ca-app-pub-7580099129317476/3742676687 wlasciwe-->
+    <!--ca-app-pub-3940256099942544/6300978111 testowe-->
 </resources>

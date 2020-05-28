@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            app:adSize="SMART_BANNER"
+            app:adSize="BANNER"
             app:adUnitId="ca-app-pub-7580099129317476/3742676687"
             app:layout_constraintBottom_toBottomOf="@+id/swipeRefreshLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +114,7 @@
                 android:layout_height="0dp"
                 android:visibility="@{viewModel.postsVisibility}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/adView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
