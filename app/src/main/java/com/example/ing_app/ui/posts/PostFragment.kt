@@ -69,7 +69,7 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         })
 
         val adView = AdView(context)
-        adView.adSize = AdSize.BANNER
+        adView.adSize = AdSize.SMART_BANNER
         adView.adUnitId = getString(R.string.admob_banner_ad)
         MobileAds.initialize(context) {}
         mAdView = binding.adView

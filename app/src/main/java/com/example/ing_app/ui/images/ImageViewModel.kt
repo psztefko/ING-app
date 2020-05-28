@@ -20,7 +20,6 @@ class ImageViewModel (private val userKey: Int = 0,
     val photosList: List<Photo>
         get() = _photosList
 
-
     private val _photos: MutableLiveData<List<Photo>> = MutableLiveData()
     val photos: LiveData<List<Photo>>
         get() = _photos
