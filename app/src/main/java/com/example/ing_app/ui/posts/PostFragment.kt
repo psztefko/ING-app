@@ -8,9 +8,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ing_app.R
 import com.example.ing_app.databinding.FragmentPostBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.fragment_post.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
+
+lateinit var mAdView : AdView
 
 class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private val viewModel: PostViewModel by sharedViewModel()
@@ -54,10 +60,22 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 viewModel.displayCommentsComplete()
             }
         })
+
+        val adView = AdView(context)
+        adView.adSize = AdSize.BANNER
+        adView.adUnitId = getString(R.string.admob_banner_ad)
+        MobileAds.initialize(context) {}
+        mAdView = binding.adView
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
+
+
+
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
@@ -68,7 +86,6 @@ class PostFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
-
         R.id.theme_icon_menu -> {
             ContextThemeWrapper(context, R.style.LightTheme).apply { setTheme(R.style.DarkTheme) }
 
