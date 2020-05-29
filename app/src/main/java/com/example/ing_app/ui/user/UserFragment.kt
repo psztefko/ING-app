@@ -20,8 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.fragment_post.swipeRefreshLayout as swipeRefreshLayout1
 
-class UserFragment : Fragment(), OnMapReadyCallback {
+class UserFragment : Fragment(), OnMapReadyCallback, SwipeRefreshLayout.OnRefreshListener {
     // Why kotlin sugested Delegates
     var args by Delegates.notNull<Int>()
     private val viewModel: UserViewModel by viewModel{ parametersOf(args) }
@@ -86,8 +87,7 @@ class UserFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
     }
 
-    // TODO: Implement swipe refresh layout
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         swipeRefreshLayout.setOnRefreshListener() {
             Timber.d("onRefreshListener")
             onRefresh()
@@ -97,7 +97,7 @@ class UserFragment : Fragment(), OnMapReadyCallback {
     override fun onRefresh() {
         viewModel.getUser()
         swipeRefreshLayout.isRefreshing = false
-    }*/
+    }
 
     // https://developers.google.com/maps/documentation/android-sdk/map#mapview
     // We don't really need fully interactive mode because we only show location
