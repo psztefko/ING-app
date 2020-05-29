@@ -42,7 +42,7 @@ class UserViewModel (private val userKey: Int = 0,
         getUser()
     }
 
-    private fun getUser() {
+    fun getUser() {
         viewModelScope.launch {
             loadingVisible()
             val apiResult = userRepository.getUserFromPost(userKey)

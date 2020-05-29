@@ -7,15 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.ing_app.databinding.FragmentUserBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.fragment_post.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 import kotlin.properties.Delegates
 
 class UserFragment : Fragment(), OnMapReadyCallback {
@@ -82,6 +85,19 @@ class UserFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
     }
+
+    // TODO: Implement swipe refresh layout
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        swipeRefreshLayout.setOnRefreshListener() {
+            Timber.d("onRefreshListener")
+            onRefresh()
+        }
+    }
+
+    override fun onRefresh() {
+        viewModel.getUser()
+        swipeRefreshLayout.isRefreshing = false
+    }*/
 
     // https://developers.google.com/maps/documentation/android-sdk/map#mapview
     // We don't really need fully interactive mode because we only show location

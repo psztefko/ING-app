@@ -34,9 +34,7 @@ class CommentViewModel (private val commentKey: Int = 0,
     }
 
     fun getComments(){
-        loadingVisibility.value = View.VISIBLE
-        commentsVisibility.value = View.GONE
-        connectionError.value = View.GONE
+        loadingVisible()
         viewModelScope.launch {
             val apiResult = commentRepository.getCommentsFromPost(commentKey)
             updateComments(apiResult)
@@ -44,10 +42,9 @@ class CommentViewModel (private val commentKey: Int = 0,
     }
 
     private fun updateComments(result: Result<List<Comment>>) {
-        loadingVisibility.value = View.GONE
         if (isResultSuccess(result.resultType)) {
             _comments.postValue(result.data)
-            commentsVisibility.value = View.VISIBLE
+            commentsVisible()
         } else {
             onResultError()
         }
@@ -69,8 +66,24 @@ class CommentViewModel (private val commentKey: Int = 0,
     private fun onResultError() {
         Timber.d("onCommentsError")
         _isErrorLiveData.postValue(true)
+        errorVisible()
+    }
+
+    private fun commentsVisible(){
         loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        commentsVisibility.value = View.VISIBLE
+    }
+
+    private fun errorVisible(){
         commentsVisibility.value = View.GONE
+        loadingVisibility.value = View.GONE
         connectionError.value = View.VISIBLE
+    }
+
+    private fun loadingVisible(){
+        commentsVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        loadingVisibility.value = View.VISIBLE
     }
 }
