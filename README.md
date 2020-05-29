@@ -1,8 +1,3 @@
-<!-- PROJECT SHIELD -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -57,12 +52,6 @@ git clone https://github.com/psztefko/ING-app.git
 ./gradlew build
 ```
 3. Install apk on your phone or run it with avd
-
-<!-- ROADMAP -->
-## Roadmap
-- [ ] Tests
-- [ ] Implementing cache
-- [ ] Quality of life improvments
 
 ## Additional Info
 Project is realized in collaboration with [ING Bank Śląski](https://www.ing.pl/)
