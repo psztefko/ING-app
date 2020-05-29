@@ -36,6 +36,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     val navigateToErrorScreen: MutableLiveData<Boolean>
         get() = _isErrorLiveData
 
+    // TODO: Should change to private val and return not unmutable list
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val connectionError: MutableLiveData<Int> = MutableLiveData()
     val postsVisibility: MutableLiveData<Int> = MutableLiveData()

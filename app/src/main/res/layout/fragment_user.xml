@@ -17,6 +17,17 @@
         android:layout_height="match_parent"
         tools:context=".UserFragment">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.loadingVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/icon_user"
             android:layout_width="wrap_content"
@@ -25,6 +36,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:contentDescription="@string/user_icon_description"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +47,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.username}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_user"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_user"
@@ -49,6 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/email_icon_description"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_user" />
 
@@ -59,6 +73,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.email}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_email"
@@ -73,6 +88,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/website_icon_description"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_email" />
 
@@ -83,6 +99,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.website}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_website"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_website"
@@ -97,6 +114,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/address_icon_description"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/icon_website" />
 
@@ -107,6 +125,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.street}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/icon_address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_address"
@@ -120,6 +139,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.city}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/street"
             app:layout_constraintTop_toBottomOf="@+id/street"
@@ -132,6 +152,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.user.address.zipcode}"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/city"
             app:layout_constraintTop_toBottomOf="@+id/city"
@@ -146,6 +167,7 @@
             android:layout_marginEnd="16dp"
             android:onClick="@{() -> userListener.onPhotosClicked(viewModel.user)}"
             android:text="@string/Photos"
+            android:visibility="@{viewModel.userVisibility}"
             android:background="@drawable/ripple_effect"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +183,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:visibility="@{viewModel.userVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

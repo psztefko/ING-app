@@ -75,6 +75,7 @@ class ImageViewModel (private val userKey: Int = 0,
     private fun updatePhotos(result: Result<List<Photo>>) {
         if (isResultSuccess(result.resultType)) {
             imagesVisible()
+            // TODO: Should add paging better and add another method for moving photos to mutable list
             result.data?.forEach { photo -> _photosList.add(photo) }
             Timber.d("last element of photosList: ${photosList.last()}")
             _photos.postValue(photosList)

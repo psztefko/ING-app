@@ -1,5 +1,6 @@
 package com.example.ing_app.ui.user
 
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,6 +33,9 @@ class UserViewModel (private val userKey: Int = 0,
     val navigateToPosts: LiveData<Boolean?>
         get() = _navigateToPosts
 
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val userVisibility: MutableLiveData<Int> = MutableLiveData()
+
     init {
         getUser()
     }
@@ -39,6 +43,8 @@ class UserViewModel (private val userKey: Int = 0,
     private fun getUser() {
         //nie
         viewModelScope.launch {
+            loadingVisibility.value = View.VISIBLE
+            userVisibility.value = View.GONE
             val apiResult = userRepository.getUserFromPost(userKey)
             updateUser(apiResult)
         }
@@ -48,6 +54,8 @@ class UserViewModel (private val userKey: Int = 0,
         if (isResultSuccess(result.resultType)) {
             Timber.d("onUpdateUserSuccess called")
             _user.postValue(result.data)
+            loadingVisibility.value = View.GONE
+            userVisibility.value = View.VISIBLE
         } else {
             onResultError()
         }
