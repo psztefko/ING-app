@@ -28,10 +28,6 @@ class ImageViewModel (private val userKey: Int = 0,
     val isErrorLiveData: LiveData<Boolean>
         get() = _isErrorLiveData
 
-    private val _navigateToFullImage = MutableLiveData<String>()
-    val navigateToFullImage: LiveData<String>
-        get() = _navigateToFullImage
-
     private val _navigateToUser = MutableLiveData<Boolean?>()
     val navigateToUser: LiveData<Boolean?>
         get() = _navigateToUser
@@ -58,7 +54,7 @@ class ImageViewModel (private val userKey: Int = 0,
         }
     }
 
-    fun getPhotos(result: Result<List<Album>>) {
+    private fun getPhotos(result: Result<List<Album>>) {
         viewModelScope.launch {
             if (isResultSuccess(result.resultType)) {
                 result.data?.forEach {
@@ -84,10 +80,6 @@ class ImageViewModel (private val userKey: Int = 0,
         }
     }
 
-    fun onImageFullImageClicked(photoUrl: String) {
-        _navigateToFullImage.value = photoUrl
-    }
-
     fun doneNavigating() {
         _navigateToUser.value = null
     }
@@ -105,19 +97,19 @@ class ImageViewModel (private val userKey: Int = 0,
         _isErrorLiveData.postValue(true)
     }
 
-    fun imagesVisible(){
+    private fun imagesVisible(){
         loadingVisibility.value = View.GONE
         connectionError.value = View.GONE
         imagesVisibility.value = View.VISIBLE
     }
 
-    fun errorVisible(){
+    private fun errorVisible(){
         imagesVisibility.value = View.GONE
         loadingVisibility.value = View.GONE
         connectionError.value = View.VISIBLE
     }
 
-    fun loadingVisible(){
+    private fun loadingVisible(){
         imagesVisibility.value = View.GONE
         connectionError.value = View.GONE
         loadingVisibility.value = View.VISIBLE

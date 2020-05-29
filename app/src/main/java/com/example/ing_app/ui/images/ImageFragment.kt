@@ -32,9 +32,7 @@ class ImageFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         binding.viewModel = viewModel
 
-        binding.photoGrid.adapter = PhotoGridAdapter( PhotoGridAdapter.OnClickListener {
-            photo -> viewModel.onImageFullImageClicked(photo.url)
-        })
+        binding.photoGrid.adapter = PhotoGridAdapter()
 
         viewModel.navigateToUser.observe(viewLifecycleOwner, Observer {
             if (it == true) {

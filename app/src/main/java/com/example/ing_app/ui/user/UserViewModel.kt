@@ -33,18 +33,18 @@ class UserViewModel (private val userKey: Int = 0,
     val navigateToPosts: LiveData<Boolean?>
         get() = _navigateToPosts
 
+    // I am not sure if it's not better to do in fragment and add observer
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val userVisibility: MutableLiveData<Int> = MutableLiveData()
+    val connectionError: MutableLiveData<Int> = MutableLiveData()
 
     init {
         getUser()
     }
 
     private fun getUser() {
-        //nie
         viewModelScope.launch {
-            loadingVisibility.value = View.VISIBLE
-            userVisibility.value = View.GONE
+            loadingVisible()
             val apiResult = userRepository.getUserFromPost(userKey)
             updateUser(apiResult)
         }
@@ -54,8 +54,7 @@ class UserViewModel (private val userKey: Int = 0,
         if (isResultSuccess(result.resultType)) {
             Timber.d("onUpdateUserSuccess called")
             _user.postValue(result.data)
-            loadingVisibility.value = View.GONE
-            userVisibility.value = View.VISIBLE
+            userVisible()
         } else {
             onResultError()
         }
@@ -82,5 +81,26 @@ class UserViewModel (private val userKey: Int = 0,
         return resultType == ResultType.SUCCESS
     }
 
-    private fun onResultError() = _isErrorLiveData.postValue(true)
+    private fun onResultError() {
+        errorVisible()
+        _isErrorLiveData.postValue(true)
+    }
+
+    private fun loadingVisible(){
+        userVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        loadingVisibility.value = View.VISIBLE
+    }
+
+    private fun errorVisible() {
+        userVisibility.value = View.GONE
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.VISIBLE
+    }
+
+    private fun userVisible(){
+        loadingVisibility.value = View.GONE
+        connectionError.value = View.GONE
+        userVisibility.value = View.VISIBLE
+    }
 }

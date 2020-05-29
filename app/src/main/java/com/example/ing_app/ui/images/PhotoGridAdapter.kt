@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.ing_app.databinding.PhotoGridBinding
 import com.example.ing_app.domain.Photo
 
- class PhotoGridAdapter( val onClickListener: OnClickListener ) :
+ class PhotoGridAdapter :
         ListAdapter<Photo, PhotoGridAdapter.PhotoViewHolder>(DiffCallback) {
 
     class PhotoViewHolder(private var binding: PhotoGridBinding):
@@ -36,13 +36,6 @@ import com.example.ing_app.domain.Photo
 
      override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photo = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(photo)
-        }
         holder.bind(photo)
      }
-
-    class OnClickListener(val clickListener: (photo:Photo) -> Unit) {
-        fun onClick(photo:Photo) = clickListener(photo)
-    }
  }
